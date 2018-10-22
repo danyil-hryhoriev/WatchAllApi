@@ -3,3 +3,5 @@
 ################################################################################
 /WatchAllApi/obj
 /.vs/WatchAllApi
+/WatchAllApi/bin/Debug/netcoreapp2.1
+/.vs/config
