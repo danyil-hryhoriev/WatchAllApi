@@ -28,12 +28,6 @@ namespace WatchAllApi.Repositories
 
         protected IMongoCollection<T> Collection => MongoDatabase.GetCollection<T>(CollectionName);
 
-        public Task<long> CountRecordsAsync()
-        {
-            return MongoDatabase.GetCollection<T>(CollectionName)
-                                .CountDocumentsAsync(x => true);
-        }
-
         public Task InsertAsync(T entity)
         {
             return MongoDatabase.GetCollection<T>(CollectionName)

@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using System;
+using System.Collections.Generic;
 
 namespace WatchAllApi.Models
 {
-    [DataContract]
     public class SeasonModel
     {
-        [DataMember]
-        [BsonElement("seasonId")]
-        public int SeasonId { get; set; }
-
-        [DataMember]
-        [BsonElement("seriesModels")]
-        public List<SeriesModel> SeriesModels { get; set; }
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public int EpisodeQty { get; set; }
+        public DateTime PremiereDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Image { get; set; }
+        public string Description { get; set; }
+        public List<EpisodeModel> Episodes { get; set; }
     }
 }

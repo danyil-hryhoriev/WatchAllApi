@@ -8,7 +8,6 @@ namespace WatchAllApi.Interfaces
 
     public interface IRepositoryBase<T> where T : class
     {
-        Task<long> CountRecordsAsync();
         Task InsertAsync(T entity);
         Task InsertRangeAsync(IEnumerable<T> entities);
         Task ReplaceAsync(T entity, Expression<Func<T, bool>> expression);
