@@ -9,6 +9,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using WatchAllApi.Interfaces;
+using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
 
 namespace WatchAllApi.Repositories

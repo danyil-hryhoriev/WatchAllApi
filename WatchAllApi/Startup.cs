@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using WatchAllApi.Interfaces;
+using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
 using WatchAllApi.Repositories;
 
@@ -28,6 +23,10 @@ namespace WatchAllApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IShowRepository, ShowRepository>();
+            services.AddTransient<IChanelRepository, ChanelRepository>();
+            services.AddTransient<IGenreRepository, GenreRepository>();
+            services.AddTransient<ISeasonRepository, SeasonRepository>();
+            services.AddTransient<IEpisodeRepository, EpisodeRepository>();
 
             services.Configure<MongoDbConfiguration>(options =>
             {

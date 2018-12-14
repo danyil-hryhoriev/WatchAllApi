@@ -5,3 +5,5 @@
 /.vs/WatchAllApi
 /WatchAllApi/bin/Debug/netcoreapp2.1
 /.vs/config
+/WatchAllApi/DataInit
+/WatchAllApi/DataInit.rar

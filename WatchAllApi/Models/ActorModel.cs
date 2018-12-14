@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
+using WatchAllApi.Enums;
 
 namespace WatchAllApi.Models
 {
@@ -30,7 +31,7 @@ namespace WatchAllApi.Models
 
         [BsonElement("gender")]
         [DataMember]
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
 
         [BsonElement("role")]
         [DataMember]

@@ -4,7 +4,8 @@ using MongoDB.Bson.Serialization.IdGenerators;
 
 namespace WatchAllApi.Models
 {
-    public class ChanelModel
+    [DataContract]
+    public class GenreModel
     {
         [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
         [DataMember]
@@ -13,9 +14,5 @@ namespace WatchAllApi.Models
         [BsonElement("name")]
         [DataMember]
         public string Name { get; set; }
-
-        [BsonElement("country")]
-        [DataMember]
-        public string Country { get; set; }
     }
 }

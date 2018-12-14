@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using WatchAllApi.Interfaces;
+using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
 
 namespace WatchAllApi.Repositories

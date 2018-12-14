@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace WatchAllApi.Interfaces
+namespace WatchAllApi.Interfaces.Repositories
 {
 
     public interface IRepositoryBase<T> where T : class
