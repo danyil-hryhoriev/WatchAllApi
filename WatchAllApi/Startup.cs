@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using WatchAllApi.Interfaces;
 using WatchAllApi.Interfaces.Managers;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Managers;

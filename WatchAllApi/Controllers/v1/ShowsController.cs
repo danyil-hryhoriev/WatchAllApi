@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using WatchAllApi.Enums;
 using WatchAllApi.Interfaces.Managers;
 using WatchAllApi.Models;
 
@@ -17,8 +12,6 @@ namespace WatchAllApi.Controllers.v1
     public class ShowsController : ControllerBase
     {
         private readonly IShowManager _showManager;
-        public List<GenreModel> Genres { get; set; }
-        public List<ChanelModel> Chanels { get; set; }
         Random rand = new Random();
 
         public ShowsController(IShowManager showManager)

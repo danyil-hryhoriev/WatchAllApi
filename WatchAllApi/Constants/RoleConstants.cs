@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace WatchAllApi.Constants
+﻿namespace WatchAllApi.Constants
 {
-    public class RoleConstants
+    public static class RoleConstants
     {
         public const string ADMIN = "admin";
         public const string MODERATOR = "moderator";

@@ -66,17 +66,15 @@ namespace WatchAllApi.Managers
     
         public async Task SeedDb()
         {
-            var files = Directory.GetFiles(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "DataInit", "data"));
+            var files = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "DataInit", "data"));
 
-            var genres = await _genreRepository.SelectAllAsync();
             var chanels = await _chanelRepository.SelectAllAsync();
             foreach (var file in files)
             {
                 var data = await File.ReadAllLinesAsync(file, CancellationToken.None);
                 var listData = data.ToList();
-                genres = await _genreRepository.SelectAllAsync();
+                var genres = await _genreRepository.SelectAllAsync();
                 var listModels = listData.Select(JsonConvert.DeserializeObject<ApiLoader.Models.ShowModel>).ToList();
-                var normal = new List<ShowModel>();
                 foreach (var item in listModels)
                 {
                     var n = await ToNormal(item, chanels, genres);
@@ -110,11 +108,12 @@ namespace WatchAllApi.Managers
             }).ToList();
             showModel.ChanelId = chanels.FirstOrDefault(x =>
                 string.Equals(x.Country, model.Chanel.Country, StringComparison.OrdinalIgnoreCase) &&
-                string.Equals(x.Name, model.Chanel.Name, StringComparison.OrdinalIgnoreCase)).Id;
+                string.Equals(x.Name, model.Chanel.Name, StringComparison.OrdinalIgnoreCase))
+                ?.Id;
             showModel.DayOfAir = string.IsNullOrEmpty(model.DayOfAir) ? DayOfWeek.Monday : Enum.Parse<DayOfWeek>(model.DayOfAir);
             showModel.Description = model.Description;
             showModel.Duration = result;
-            showModel.GenresIds = model.Genres.Select(x => genres.FirstOrDefault(q => string.Equals(q.Name, x, StringComparison.OrdinalIgnoreCase)).Id).ToList();
+            showModel.GenresIds = model.Genres.Select(x => genres.FirstOrDefault(q => string.Equals(q.Name, x, StringComparison.OrdinalIgnoreCase))?.Id).ToList();
             showModel.ImageMedium = model.ImageMedium;
             showModel.ImageOriginal = model.ImageOriginal;
             showModel.ImdbId = model.ImdbId;

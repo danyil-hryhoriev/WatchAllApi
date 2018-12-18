@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WatchAllApi.Constants;
@@ -10,6 +9,7 @@ namespace WatchAllApi.Controllers.v1
 {
     [Authorize(Roles = RoleConstants.ADMIN)]
     [Route("api/v1/[controller]")]
+    [ApiController]
     public class UsersController: ControllerBase
     {
         private readonly IUserManager _userManager;
@@ -20,10 +20,11 @@ namespace WatchAllApi.Controllers.v1
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetInfo()
+        public IActionResult GetInfo()
         {
             var userId = HttpContext.User.Claims.FirstOrDefault(r => r.Type == ClaimTypes.NameIdentifier)?.Value;
-            return Ok(userId); 
+            var user = _userManager.GetByIdAsync(userId);
+            return Ok(user); 
         }
     }
 }

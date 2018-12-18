@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using WatchAllApi.Interfaces;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
 

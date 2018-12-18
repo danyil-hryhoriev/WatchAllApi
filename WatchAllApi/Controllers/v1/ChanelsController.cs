@@ -89,7 +89,7 @@ namespace WatchAllApi.Controllers.v1
         [HttpPost]
         public async Task<IActionResult> SeedDatabase()
         {
-            var data = await System.IO.File.ReadAllLinesAsync(Path.Combine(System.IO.Directory.GetCurrentDirectory(), "DataInit", "chanels.txt"), CancellationToken.None);
+            var data = await System.IO.File.ReadAllLinesAsync(Path.Combine(Directory.GetCurrentDirectory(), "DataInit", "chanels.txt"), CancellationToken.None);
             var listData = data.ToList();
             var listModels = listData.Select(JsonConvert.DeserializeObject<ChanelModel>).ToList();
             await _chanelRepository.InsertRangeAsync(listModels);
