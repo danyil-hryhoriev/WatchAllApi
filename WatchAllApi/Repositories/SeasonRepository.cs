@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
 
@@ -14,3 +16,4 @@ namespace WatchAllApi.Repositories
         public override string CollectionName => "seasons";
     }
 }
+

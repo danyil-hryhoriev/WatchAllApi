@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WatchAllApi.Interfaces;
+using WatchAllApi.Interfaces.Managers;
 using WatchAllApi.Interfaces.Repositories;
+using WatchAllApi.Managers;
 using WatchAllApi.Models;
 using WatchAllApi.Repositories;
 
@@ -27,6 +29,15 @@ namespace WatchAllApi
             services.AddTransient<IGenreRepository, GenreRepository>();
             services.AddTransient<ISeasonRepository, SeasonRepository>();
             services.AddTransient<IEpisodeRepository, EpisodeRepository>();
+            services.AddTransient<IShowManager, ShowManager>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
+
 
             services.Configure<MongoDbConfiguration>(options =>
             {
@@ -42,7 +53,7 @@ namespace WatchAllApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("AllowSpecificOrigin");
             app.UseMvc();
         }
     }

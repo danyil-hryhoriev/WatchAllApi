@@ -11,7 +11,9 @@ namespace WatchAllApi.Interfaces.Repositories
         Task InsertAsync(T entity);
         Task InsertRangeAsync(IEnumerable<T> entities);
         Task ReplaceAsync(T entity, Expression<Func<T, bool>> expression);
+        Task ReplaceByIdAsync(string id, T entity);
         Task<bool> DeleteAsync(Expression<Func<T, bool>> expression);
+        Task<bool> DeleteByIdAsync(string id);
         Task<T> FindAsync(string key);
         Task<List<T>> FindAsync(Expression<Func<T, bool>> expression);
         Task<List<T>> SelectAllAsync();

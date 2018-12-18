@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
@@ -47,10 +48,26 @@ namespace WatchAllApi.Repositories
                                 .ReplaceOneAsync(expression, entity);
         }
 
+        public Task ReplaceByIdAsync(string id, T entity)
+        {
+            var filter = new BsonDocument("_id", id);
+            return MongoDatabase.GetCollection<T>(CollectionName)
+                .ReplaceOneAsync(filter, entity);
+        }
+
         public async Task<bool> DeleteAsync(Expression<Func<T, bool>> expression)
         {
             var deleteResult = await MongoDatabase.GetCollection<T>(CollectionName)
                                                   .DeleteOneAsync(expression);
+
+            return deleteResult.DeletedCount > 0;
+        }
+
+        public async Task<bool> DeleteByIdAsync(string id)
+        {
+            var filter = new BsonDocument("_id", id);
+            var deleteResult = await MongoDatabase.GetCollection<T>(CollectionName)
+                .DeleteOneAsync(filter);
 
             return deleteResult.DeletedCount > 0;
         }
@@ -64,6 +81,7 @@ namespace WatchAllApi.Repositories
             return await cursor.FirstOrDefaultAsync();
         }
 
+
         public async Task<List<T>> SelectAllAsync()
         {
             var cursor = await MongoDatabase.GetCollection<T>(CollectionName)
@@ -71,7 +89,7 @@ namespace WatchAllApi.Repositories
 
             return await cursor.ToListAsync();
         }
-        
+
         public async Task<List<T>> FindAsync(Expression<Func<T, bool>> filter)
         {
             var cursor = await MongoDatabase.GetCollection<T>(CollectionName)

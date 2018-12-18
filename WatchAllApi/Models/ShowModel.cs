@@ -48,7 +48,7 @@ namespace WatchAllApi.Models
 
         [BsonElement("rating")]
         [DataMember]
-        public double Rating { get; set; }
+        public float Rating { get; set; }
 
         [BsonElement("chanelId")]
         [DataMember]
