@@ -6,11 +6,11 @@ namespace WatchAllApi.Interfaces.Managers
 {
     public interface ICacheManager
     {
-        Task<List<ChanelModel>> GetAllChanels();
-        Task<ChanelModel> GetChanelById(string id);
-        Task CreateChanel(ChanelModel chanelModel);
+        Task<List<ChannelModel>> GetAllChanels();
+        Task<ChannelModel> GetChanelById(string id);
+        Task CreateChanel(ChannelModel chanelModel);
         Task RemoveChanelById(string id);
-        Task UpdateChanel(ChanelModel chanelModel);
+        Task UpdateChanel(ChannelModel chanelModel);
 
         Task<List<GenreModel>> GetAllGenres();
         Task<GenreModel> GetGenreById(string id);

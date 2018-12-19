@@ -7,6 +7,9 @@ using WatchAllApi.Models;
 
 namespace WatchAllApi.Controllers.v1
 {
+    /// <summary>
+    /// The controller allows managing the shows
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class ShowsController : ControllerBase
@@ -14,11 +17,21 @@ namespace WatchAllApi.Controllers.v1
         private readonly IShowManager _showManager;
         Random rand = new Random();
 
+        /// <summary>
+        /// ShowsController constructor
+        /// </summary>
+        /// <param name="showManager"></param>
         public ShowsController(IShowManager showManager)
         {
             _showManager = showManager;
         }
 
+        /// <summary>
+        /// Returns all channels that contains in DB
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">Returns all channels that contains in DB</response>
+        [ProducesResponseType(typeof(List<ChannelModel>), 200)]
         [HttpGet]
         public async Task<IActionResult> GetAllShows()
         {
@@ -26,6 +39,10 @@ namespace WatchAllApi.Controllers.v1
             return Ok(show);
         }
 
+        /// <summary>
+        /// Returns Top-100 shows by rating
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("top100")]
         public async Task<IActionResult> GetTopShows()
@@ -41,6 +58,17 @@ namespace WatchAllApi.Controllers.v1
             return Ok(top);
         }
 
+        /// <summary>
+        /// Returns show by Id from DB
+        /// </summary>
+        /// <param name="id">The id of show in DB</param>
+        /// <response code="404">Show is not exists</response>
+        /// <response code="400">Id is null or empty</response>
+        /// <response code="200">Returns existing show model</response>
+        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(ChannelModel), 200)]
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetShowById([FromRoute] string id)
@@ -49,6 +77,15 @@ namespace WatchAllApi.Controllers.v1
             return Ok(show);
         }
 
+        /// <summary>
+        /// Saves the model in the database and return it
+        /// </summary>
+        /// <param name="showModel">The model of the show that will be saved in DB</param>
+        /// <response code="400">Some fields in model are invalid or null</response>
+        /// <response code="200">Returns saved show model</response>
+        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(ChannelModel), 200)]
         [HttpPost]
         public async Task<IActionResult> PostShow([FromBody] ShowModel showModel)
         {
@@ -57,6 +94,16 @@ namespace WatchAllApi.Controllers.v1
             return Ok(res);
         }
 
+        /// <summary>
+        /// Updates the existing model in the database and return it
+        /// </summary>
+        /// <param name="id">The id of show in DB</param>
+        /// <param name="showModel">The model of show that will be saved in DB</param>
+        /// <response code="400">Some fields in model are invalid or null</response>
+        /// <response code="200">Returns updated show model</response>
+        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(ChannelModel), 200)]
         [Route("{id}")]
         [HttpPut]
         public async Task<IActionResult> PutShow([FromRoute] string id, [FromBody] ShowModel showModel)
@@ -71,6 +118,15 @@ namespace WatchAllApi.Controllers.v1
             return Ok(res);
         }
 
+        /// <summary>
+        /// Delete the existing model in the database
+        /// </summary>
+        /// <param name="id">The id of show in DB</param>
+        /// <response code="400">Some fields in model are invalid or null</response>
+        /// <response code="200">show was deleted successfully</response>
+        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 200)]
         [Route("{id}")]
         [HttpDelete]
         public async Task<IActionResult> DeleteShowById([FromRoute] string id)
@@ -85,7 +141,14 @@ namespace WatchAllApi.Controllers.v1
             return Ok();
         }
 
-
+        /// <summary>
+        /// Seed the database
+        /// </summary>
+        /// <response code="404">File with shows not found</response>
+        /// <response code="200">DataBase was seeded successfully</response>
+        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(string), 200)]
         [Route("seed")]
         [HttpPost]
         public async Task<IActionResult> SeedDatabase()

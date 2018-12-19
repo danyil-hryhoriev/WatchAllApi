@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace WatchAllApi.Models
 {
+    /// <summary>
+    /// Model for user login
+    /// </summary>
     public class UserLoginModel
     {
         /// <summary>

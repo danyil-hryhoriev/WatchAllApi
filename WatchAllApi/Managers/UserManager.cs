@@ -4,57 +4,92 @@ using System.Threading.Tasks;
 using WatchAllApi.Interfaces.Managers;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
-using WatchAllApi.Requests;
 
 namespace WatchAllApi.Managers
 {
+    /// <summary>
+    /// Managing of users and business logic for them
+    /// </summary>
     public class UserManager : IUserManager
     {
         private readonly IUserRepository _userRepository;
 
+        /// <summary>
+        /// Constructor of UserManager
+        /// </summary>
+        /// <param name="userRepository"></param>
         public UserManager(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public Task<UserProfile> GetByIdAsync(string id)
+        /// <summary>
+        /// Returns model of user by id
+        /// </summary>
+        /// <param name="id">Id of existing user</param>
+        /// <returns></returns>
+        public Task<UserProfile> GetById(string id)
         {
             return _userRepository.FindAsync(id);
         }
 
-        public Task<UserProfile> GetByLoginAsync(string login)
+        /// <summary>
+        /// Returns model of user by user login
+        /// </summary>
+        /// <param name="login">Login of existing user</param>
+        /// <returns></returns>
+        public Task<UserProfile> GetByLogin(string login)
         {
             return _userRepository.FindByLogin(login);
         }
 
-        public Task<UserProfile> GetByEmailAsync(string email)
+        /// <summary>
+        /// Returns model of user by email
+        /// </summary>
+        /// <param name="email">Email of existing user</param>
+        /// <returns></returns>
+        public Task<UserProfile> GetByEmail(string email)
         {
             return _userRepository.FindByEmail(email);
         }
 
+        /// <summary>
+        /// Returns all existing shows in DB
+        /// </summary>
+        /// <returns></returns>
         public Task<List<UserProfile>> GetAllUsers()
         {
             return _userRepository.SelectAllAsync();
         }
 
-        public Task InsertProfileAsync(UserProfile registerUser)
+        /// <summary>
+        /// Inserts new user in Db
+        /// </summary>
+        /// <param name="userProfile">Model of user that will be inserted</param>
+        /// <returns></returns>
+        public Task InsertProfileAsync(UserProfile userProfile)
         {
-            return _userRepository.InsertAsync(registerUser);
+            return _userRepository.InsertAsync(userProfile);
         }
 
-        public Task UpdateProfileAsync(UserProfile registerUser)
+        /// <summary>
+        /// Updates existing user in Db
+        /// </summary>
+        /// <param name="userProfile">Model of user that will be updated</param>
+        /// <returns></returns>
+        public Task UpdateProfileAsync(UserProfile userProfile)
         {
-            return _userRepository.ReplaceByIdAsync(registerUser.Id, registerUser);
+            return _userRepository.ReplaceByIdAsync(userProfile.Id, userProfile);
         }
 
+        /// <summary>
+        /// Deletes existing user in Db
+        /// </summary>
+        /// <param name="id">Id of user that will be deleted</param>
+        /// <returns></returns>
         public Task<bool> DeleteProfileAsync(string id)
         {
             return _userRepository.DeleteByIdAsync(id);
-        }
-
-        public string ValidatePassword(string password)
-        {
-            throw new NotImplementedException();
         }
     }
 }

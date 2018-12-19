@@ -12,63 +12,106 @@ using WatchAllApi.Models;
 
 namespace WatchAllApi.Managers
 {
+    /// <summary>
+    /// Managing of shows and business logic for them
+    /// </summary>
     public class ShowManager : IShowManager
     {
         private readonly IShowRepository _showRepository;
-        private readonly IChanelRepository _chanelRepository;
+        private readonly IChannelRepository _channelRepository;
         private readonly IGenreRepository _genreRepository;
         private readonly ISeasonRepository _seasonRepository;
         private readonly IEpisodeRepository _episodeRepository;
 
-        public ShowManager(IShowRepository showRepository, IChanelRepository chanelRepository, IGenreRepository genreRepository,
+        /// <summary>
+        /// Constructor of Show manager
+        /// </summary>
+        /// <param name="showRepository"></param>
+        /// <param name="channelRepository"></param>
+        /// <param name="genreRepository"></param>
+        /// <param name="seasonRepository"></param>
+        /// <param name="episodeRepository"></param>
+        public ShowManager(IShowRepository showRepository, IChannelRepository channelRepository, IGenreRepository genreRepository,
             ISeasonRepository seasonRepository, IEpisodeRepository episodeRepository)
         {
             _showRepository = showRepository;
-            _chanelRepository = chanelRepository;
+            _channelRepository = channelRepository;
             _genreRepository = genreRepository;
             _seasonRepository = seasonRepository;
             _episodeRepository = episodeRepository;
         }
 
+        /// <summary>
+        /// Returns model of show by id
+        /// </summary>
+        /// <param name="id">Id of existing show</param>
+        /// <returns></returns>
         public Task<ShowModel> GetShowById(string id)
         {
             return _showRepository.FindAsync(id);
         }
 
+        /// <summary>
+        /// Returns all existing shows in DB
+        /// </summary>
+        /// <returns></returns>
         public Task<List<ShowModel>> GetAllShows()
         {
             return _showRepository.SelectAllAsync();
         }
 
+        /// <summary>
+        /// Inserts new show in Db
+        /// </summary>
+        /// <param name="showModel">Model of show that will be inserted</param>
+        /// <returns></returns>
         public async Task<ShowModel> InsertShow(ShowModel showModel)
         {
             await _showRepository.InsertAsync(showModel);
             return showModel;
         }
 
+        /// <summary>
+        /// Updates existing show in Db
+        /// </summary>
+        /// <param name="showModel">Model of show that will be updated</param>
+        /// <returns></returns>
         public async Task<ShowModel> UpdateShow(ShowModel showModel)
         {
             await _showRepository.ReplaceByIdAsync(showModel.Id, showModel);
             return showModel;
         }
 
+        /// <summary>
+        /// Deletes existing show in Db
+        /// </summary>
+        /// <param name="id">Id of show that will be deleted</param>
+        /// <returns></returns>
         public async Task RemoveShow(string id)
         {
             await _showRepository.DeleteByIdAsync(id);
         }
 
+        /// <summary>
+        /// Returns Top-100 shows by rating
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<ShowModel>> GetTopShows()
         {
            return await _showRepository.GetFirstTop(100);
         }
 
         #region Seed DB
-    
+
+        /// <summary>
+        /// Seeds DB by Data from files
+        /// </summary>
+        /// <returns></returns>
         public async Task SeedDb()
         {
             var files = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "DataInit", "data"));
 
-            var chanels = await _chanelRepository.SelectAllAsync();
+            var chanels = await _channelRepository.SelectAllAsync();
             foreach (var file in files)
             {
                 var data = await File.ReadAllLinesAsync(file, CancellationToken.None);
@@ -83,7 +126,7 @@ namespace WatchAllApi.Managers
             }
         }
 
-        private async Task<ShowModel> ToNormal(ApiLoader.Models.ShowModel model, List<ChanelModel> chanels, List<GenreModel> genres)
+        private async Task<ShowModel> ToNormal(ApiLoader.Models.ShowModel model, List<ChannelModel> chanels, List<GenreModel> genres)
         {
             int.TryParse(model.Duration, out var result);
             float.TryParse(model.Rating, out var doub);

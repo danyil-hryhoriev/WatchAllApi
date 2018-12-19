@@ -15,6 +15,9 @@ using WatchAllApi.Requests;
 
 namespace WatchAllApi.Controllers.v1
 {
+    /// <summary>
+    /// The controller allows managing the authorization
+    /// </summary>
     [Authorize]
     [Route("api/v1/[controller]")]
     [ApiController]
@@ -24,6 +27,13 @@ namespace WatchAllApi.Controllers.v1
         private readonly IAuthorizationManager _authorizationManager;
         private readonly IPasswordHasher<UserProfile> _passwordHasher;
 
+
+        /// <summary>
+        /// TokensController constructor
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="authorizationManager"></param>
+        /// <param name="passwordHasher"></param>
         public TokensController(IUserManager userManager, IAuthorizationManager authorizationManager, IPasswordHasher<UserProfile> passwordHasher)
         {
             _userManager = userManager;
@@ -34,21 +44,27 @@ namespace WatchAllApi.Controllers.v1
         /// <summary>
         /// Login user via login and password
         /// </summary>
-        /// <param name="loginModel"></param>
+        /// <param name="loginModel">Model for authorization</param>
+        /// <response code="404">Profile with give login not found</response>
+        /// <response code="400">Invalid login model</response>
+        /// <response code="200">Returns new token</response>
         /// <returns>Token</returns>
         [AllowAnonymous]
         [Route("login")]
-        [ProducesResponseType(typeof(string), 200)]
         [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 200)]
         [HttpPost]
         public async Task<IActionResult> LoginUser([FromBody]UserLoginModel loginModel)
         {
             UserProfile profile = null;
 
-            if (!string.IsNullOrEmpty(loginModel.Username))
+            if (string.IsNullOrEmpty(loginModel.Username) || string.IsNullOrEmpty(loginModel.Password))
             {
-                profile = await _userManager.GetByLoginAsync(loginModel.Username);
+                return BadRequest("Invalid model");
             }
+
+            profile = await _userManager.GetByLogin(loginModel.Username);
 
             if (profile != null)
             {
@@ -64,6 +80,17 @@ namespace WatchAllApi.Controllers.v1
             return NotFound("Profile with give login not found");
         }
 
+        /// <summary>
+        /// Register new user
+        /// </summary>
+        /// <param name="registerRequest">Model of new user</param>
+        /// <response code="401">Error occuring when logging</response>
+        /// <response code="400">User already exist or invalid model</response>
+        /// <response code="200">Returns new token</response>
+        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 401)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 200)]
         [AllowAnonymous]
         [Route("register")]
         [HttpPost]
@@ -76,20 +103,20 @@ namespace WatchAllApi.Controllers.v1
                 return BadRequest();
             }
 
-            var byEmail = await _userManager.GetByEmailAsync(userModel.Email);
+            var byEmail = await _userManager.GetByEmail(userModel.Email);
 
             if (byEmail != null)
             {
                 return BadRequest();
             }
 
-            var byLogin = await _userManager.GetByLoginAsync(userModel.Login);
+            var byLogin = await _userManager.GetByLogin(userModel.Login);
 
             if (byLogin != null)
             {
                 return BadRequest();
             }
-
+            
             userModel.Password = _passwordHasher.HashPassword(userModel, userModel.Password);
             userModel.CreatedDate = DateTime.Now;
             userModel.Role = UserRole.User;
@@ -108,6 +135,10 @@ namespace WatchAllApi.Controllers.v1
             return Ok(result);
         }
 
+        /// <summary>
+        /// Seeds basic users
+        /// </summary>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route("seed"), HttpPost]
         [ProducesResponseType(typeof(string), 400)]

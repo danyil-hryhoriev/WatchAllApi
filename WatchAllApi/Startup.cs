@@ -36,7 +36,7 @@ namespace WatchAllApi
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IShowRepository, ShowRepository>();
-            services.AddTransient<IChanelRepository, ChanelRepository>();
+            services.AddTransient<IChannelRepository, ChannelRepository>();
             services.AddTransient<IGenreRepository, GenreRepository>();
             services.AddTransient<ISeasonRepository, SeasonRepository>();
             services.AddTransient<IEpisodeRepository, EpisodeRepository>();

@@ -5,49 +5,51 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
 
 namespace WatchAllApi.Controllers.v1
 {
     /// <summary>
-    /// The controller allows managing the genres
+    /// The controller allows managing the channels
     /// </summary>
+    [Produces("application/json")]
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class GenresController : ControllerBase
+    public class ChanelsController : ControllerBase
     {
-        private readonly IGenreRepository _genreRepository;
+        private readonly IChannelRepository _channelRepository;
 
         /// <summary>
-        /// GenresController constructor
+        /// ChannelsController constructor
         /// </summary>
-        /// <param name="genreRepository"></param>
-        public GenresController(IGenreRepository genreRepository)
+        /// <param name="channelRepository"></param>
+        public ChanelsController(IChannelRepository channelRepository)
         {
-            _genreRepository = genreRepository;
+            _channelRepository = channelRepository;
         }
 
         /// <summary>
-        /// Returns all genres that contains in DB
+        /// Returns all channels that contains in DB
         /// </summary>
         /// <returns></returns>
-        /// <response code="200">Returns all genres that contains in DB</response>
-        [ProducesResponseType(typeof(List<GenreModel>), 200)]
+        /// <response code="200">Returns all channels that contains in DB</response>
+        [ProducesResponseType(typeof(List<ChannelModel>), 200)]
         [HttpGet]
         public async Task<IActionResult> GetAllChanels()
         {
-            var genres = await _genreRepository.SelectAllAsync();
-            return Ok(genres);
+            var chanels = await _channelRepository.SelectAllAsync();
+            return Ok(chanels);
         }
 
         /// <summary>
-        /// Returns genre by Id from DB
+        /// Returns channel by Id from DB
         /// </summary>
-        /// <param name="id">The id of genre in DB</param>
-        /// <response code="404">genre is not exists</response>
+        /// <param name="id">The id of channel in DB</param>
+        /// <response code="404">Channel is not exists</response>
         /// <response code="400">Id is null or empty</response>
-        /// <response code="200">Returns existing genre model</response>
+        /// <response code="200">Returns existing channel model</response>
         /// <returns></returns>
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 404)]
@@ -60,67 +62,74 @@ namespace WatchAllApi.Controllers.v1
             {
                 return BadRequest("Id is empty");
             }
-            var genres = await _genreRepository.FindAsync(id);
-            return Ok(genres);
+
+            var channelModel = await _channelRepository.FindAsync(id);
+
+            if (channelModel == null)
+            {
+                return NotFound("Channel is not exist");
+            }
+
+            return Ok(channelModel);
         }
 
         /// <summary>
         /// Saves the model in the database and return it
         /// </summary>
-        /// <param name="genreModel">The model of the genre that will be saved in DB</param>
+        /// <param name="chanelModel">The model of the channel that will be saved in DB</param>
         /// <response code="400">Some fields in model are invalid or null</response>
-        /// <response code="200">Returns saved genre model</response>
+        /// <response code="200">Returns saved channel model</response>
         /// <returns></returns>
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(ChannelModel), 200)]
         [HttpPost]
-        public async Task<IActionResult> PostChanel([FromBody] GenreModel genreModel)
+        public async Task<IActionResult> PostChanel([FromBody] ChannelModel chanelModel)
         {
-            if (string.IsNullOrEmpty(genreModel.Name))
+            if (string.IsNullOrEmpty(chanelModel.Country) || string.IsNullOrEmpty(chanelModel.Name))
             {
                 return BadRequest("Model is invalid");
             }
 
-            await _genreRepository.InsertAsync(genreModel);
+            await _channelRepository.InsertAsync(chanelModel);
 
-            return Ok(genreModel);
+            return Ok(chanelModel);
         }
 
         /// <summary>
         /// Updates the existing model in the database and return it
         /// </summary>
-        /// <param name="id">The id of genre in DB</param>
-        /// <param name="genreModel">The model of genre that will be saved in DB</param>
+        /// <param name="id">The id of channel in DB</param>
+        /// <param name="chanelModel">The model of channel that will be saved in DB</param>
         /// <response code="400">Some fields in model are invalid or null</response>
-        /// <response code="200">Returns updated genre model</response>
+        /// <response code="200">Returns updated channel model</response>
         /// <returns></returns>
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(ChannelModel), 200)]
         [Route("{id}")]
         [HttpPut]
-        public async Task<IActionResult> PutChanel([FromRoute] string id, [FromBody] GenreModel genreModel)
+        public async Task<IActionResult> PutChanel([FromRoute] string id, [FromBody] ChannelModel chanelModel)
         {
             if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Id is empty");
             }
 
-            if (string.IsNullOrEmpty(genreModel.Name))
+            if (string.IsNullOrEmpty(chanelModel.Country) || string.IsNullOrEmpty(chanelModel.Name))
             {
                 return BadRequest("Model is invalid");
             }
 
-            await _genreRepository.ReplaceAsync(genreModel, model => string.Equals(model.Id, id, StringComparison.OrdinalIgnoreCase));
+            await _channelRepository.ReplaceAsync(chanelModel, model => string.Equals(model.Id, id, StringComparison.OrdinalIgnoreCase));
 
-            return Ok(genreModel);
+            return Ok(chanelModel);
         }
 
         /// <summary>
         /// Delete the existing model in the database
         /// </summary>
-        /// <param name="id">The id of genre in DB</param>
+        /// <param name="id">The id of channel in DB</param>
         /// <response code="400">Some fields in model are invalid or null</response>
-        /// <response code="200">genre was deleted successfully</response>
+        /// <response code="200">Channel was deleted successfully</response>
         /// <returns></returns>
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 200)]
@@ -133,9 +142,9 @@ namespace WatchAllApi.Controllers.v1
                 return BadRequest("Id is empty");
             }
 
-            var genres = await _genreRepository.DeleteByIdAsync(id);
+            await _channelRepository.DeleteByIdAsync(id);
 
-            return Ok(genres);
+            return Ok("Channel was deleted successfully");
         }
 
         /// <summary>
@@ -150,7 +159,7 @@ namespace WatchAllApi.Controllers.v1
         [HttpPost]
         public async Task<IActionResult> SeedDatabase()
         {
-            var path = Path.Combine(AppContext.BaseDirectory, "genres.txt");
+            var path = Path.Combine(AppContext.BaseDirectory, "chanels.txt");
 
             if (!System.IO.File.Exists(path))
             {
@@ -159,17 +168,10 @@ namespace WatchAllApi.Controllers.v1
 
             var data = await System.IO.File.ReadAllLinesAsync(path, CancellationToken.None);
             var listData = data.ToList();
-            var listModels = listData.Select(x =>
-            {
-                if (string.IsNullOrEmpty(x))
-                {
-                    return new GenreModel() { Name = "" };
-                }
-                return new GenreModel() { Name = x };
-            }).ToList();
-            await _genreRepository.InsertRangeAsync(listModels);
-            return Ok();
+            var listModels = listData.Select(JsonConvert.DeserializeObject<ChannelModel>).ToList();
+            await _channelRepository.InsertRangeAsync(listModels);
+            return Ok("DataBase was seeded successfully");
         }
-        
+
     }
 }

@@ -11,21 +11,21 @@ namespace WatchAllApi.Managers
 {
     public class CacheManager : ICacheManager
     {
-        private readonly IChanelRepository _chanelRepository;
+        private readonly IChannelRepository _channelRepository;
         private readonly IGenreRepository _genreRepository;
 
-        private readonly ConcurrentBag<ChanelModel> Chanels = new ConcurrentBag<ChanelModel>();
+        private readonly ConcurrentBag<ChannelModel> Chanels = new ConcurrentBag<ChannelModel>();
         private readonly ConcurrentBag<GenreModel> Genres = new ConcurrentBag<GenreModel>();
 
-        public CacheManager(IChanelRepository chanelRepository, IGenreRepository genreRepository)
+        public CacheManager(IChannelRepository channelRepository, IGenreRepository genreRepository)
         {
-            _chanelRepository = chanelRepository;
+            _channelRepository = channelRepository;
             _genreRepository = genreRepository;
         }
 
         public async Task LoadInCache()
         {
-            var chanels = await _chanelRepository.SelectAllAsync();
+            var chanels = await _channelRepository.SelectAllAsync();
             var genres = await _genreRepository.SelectAllAsync();
             foreach (var chanel in chanels)
             {
@@ -38,22 +38,22 @@ namespace WatchAllApi.Managers
             }
         }
 
-        public Task<List<ChanelModel>> GetAllChanels()
+        public Task<List<ChannelModel>> GetAllChanels()
         {
             return Task.Run(() => Chanels.ToList());
         }
 
-        public Task<ChanelModel> GetChanelById(string id)
+        public Task<ChannelModel> GetChanelById(string id)
         {
             return Task.Run(() =>
                 Chanels.FirstOrDefault(x => string.Equals(x.Id, id, StringComparison.OrdinalIgnoreCase)));
         }
 
-        public Task CreateChanel(ChanelModel chanelModel)
+        public Task CreateChanel(ChannelModel chanelModel)
         {
             return Task.Run(() =>
             {
-                _chanelRepository.InsertAsync(chanelModel);
+                _channelRepository.InsertAsync(chanelModel);
                 Chanels.Add(chanelModel);
             });
         }
@@ -62,11 +62,11 @@ namespace WatchAllApi.Managers
         {
             return Task.Run(() =>
             {
-                _chanelRepository.DeleteAsync(model => string.Equals(model.Id, id, StringComparison.OrdinalIgnoreCase));
+                _channelRepository.DeleteAsync(model => string.Equals(model.Id, id, StringComparison.OrdinalIgnoreCase));
             });
         }
 
-        public Task UpdateChanel(ChanelModel chanelModel)
+        public Task UpdateChanel(ChannelModel chanelModel)
         {
             throw new System.NotImplementedException();
         }

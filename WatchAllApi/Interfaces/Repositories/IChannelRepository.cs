@@ -3,9 +3,9 @@
 namespace WatchAllApi.Interfaces.Repositories
 {
     /// <summary>
-    /// Manages episodes in the database
+    /// Manages channels in the database
     /// </summary>
-    public interface IEpisodeRepository : IRepositoryBase<EpisodeModel>
+    public interface IChannelRepository: IRepositoryBase<ChannelModel>
     {
     }
 }

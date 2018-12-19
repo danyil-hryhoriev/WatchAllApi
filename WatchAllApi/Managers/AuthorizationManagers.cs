@@ -5,15 +5,28 @@ using WatchAllApi.Models;
 
 namespace WatchAllApi.Managers
 {
+    /// <summary>
+    /// Authorization manager
+    /// </summary>
     public class AuthorizationManager : IAuthorizationManager
     {
         private readonly IPasswordHasher<UserProfile> _passwordHasher;
 
+        /// <summary>
+        /// Constructor of Authorization manager
+        /// </summary>
+        /// <param name="passwordHasher"></param>
         public AuthorizationManager(IPasswordHasher<UserProfile> passwordHasher)
         {
             _passwordHasher = passwordHasher;
         }
 
+        /// <summary>
+        /// Authorizing existing user
+        /// </summary>
+        /// <param name="loginModel">Model for authorization</param>
+        /// <param name="profile">Existing user profile</param>
+        /// <returns></returns>
         public UserModel Authenticate(UserLoginModel loginModel, UserProfile profile)
         {
             UserModel user = null;
