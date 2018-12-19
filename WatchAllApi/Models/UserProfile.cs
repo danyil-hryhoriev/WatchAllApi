@@ -7,15 +7,9 @@ using WatchAllApi.Enums;
 
 namespace WatchAllApi.Models
 {
-    /// <summary>
-    /// User profile
-    /// </summary>
     [DataContract]
     public class UserProfile
     {
-        /// <summary>
-        /// User profile constructor
-        /// </summary>
         public UserProfile()
         {
             CreatedDate = DateTime.UtcNow;
@@ -26,7 +20,7 @@ namespace WatchAllApi.Models
         public string Id { get; set; }
 
         [BsonElement("login")]
-        [DataMember, Required]
+        [DataMember]
         public string Login { get; set; }
 
         [BsonElement("password")]

@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using WatchAllApi.Enums;
+using WatchAllApi.Requests;
 
 namespace WatchAllApi.Controllers.v1
 {
@@ -33,19 +34,18 @@ namespace WatchAllApi.Controllers.v1
         [AllowAnonymous]
         [Route("login")]
         [HttpPost]
-        [ProducesResponseType(typeof(string), 400)]
-        public async Task<IActionResult> CreateToken([FromBody]UserLoginModel login)
+        public async Task<IActionResult> LoginUser([FromBody]UserLoginModel loginModel)
         {
             UserProfile profile = null;
 
-            if (!string.IsNullOrEmpty(login.Username))
+            if (!string.IsNullOrEmpty(loginModel.Username))
             {
-                profile = await _userManager.GetByLoginAsync(login.Username);
+                profile = await _userManager.GetByLoginAsync(loginModel.Username);
             }
 
             if (profile != null)
             {
-                var user = _authorizationManager.Authenticate(login, profile);
+                var user = _authorizationManager.Authenticate(loginModel, profile);
 
                 if (user != null)
                 {
@@ -58,11 +58,55 @@ namespace WatchAllApi.Controllers.v1
         }
 
         [AllowAnonymous]
+        [Route("register")]
+        [HttpPost]
+        public async Task<IActionResult> RegisterUser([FromBody]RegisterUserRequest registerRequest)
+        {
+            var userModel = registerRequest.ToModel();
+
+            if (userModel == null)
+            {
+                return BadRequest();
+            }
+
+            var byEmail = await _userManager.GetByEmailAsync(userModel.Email);
+
+            if (byEmail != null)
+            {
+                return BadRequest();
+            }
+
+            var byLogin = await _userManager.GetByLoginAsync(userModel.Login);
+
+            if (byLogin != null)
+            {
+                return BadRequest();
+            }
+
+            userModel.Password = _passwordHasher.HashPassword(userModel, userModel.Password);
+            userModel.CreatedDate = DateTime.Now;
+            userModel.Role = UserRole.User;
+
+            await _userManager.InsertProfileAsync(userModel);
+
+            var login = new UserLoginModel() { Username = userModel.Login, Password = userModel.Password };
+
+            var user = _authorizationManager.Authenticate(login, userModel);
+            if (user == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = GenerateToken(userModel);
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
         [Route("seed"), HttpPost]
         [ProducesResponseType(typeof(string), 400)]
         public async Task<IActionResult> SeedAdmin()
         {
-            var profiles = new UserProfile[]
+            var profiles = new[]
             {
                 new UserProfile{
                     Login = "mozgokluy",

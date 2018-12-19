@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using WatchAllApi.Interfaces.Managers;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
+using WatchAllApi.Requests;
 
 namespace WatchAllApi.Managers
 {
@@ -36,14 +37,14 @@ namespace WatchAllApi.Managers
             return _userRepository.SelectAllAsync();
         }
 
-        public Task InsertProfileAsync(UserProfile userProfile)
+        public Task InsertProfileAsync(UserProfile registerUser)
         {
-            return _userRepository.InsertAsync(userProfile);
+            return _userRepository.InsertAsync(registerUser);
         }
 
-        public Task UpdateProfileAsync(UserProfile userProfile)
+        public Task UpdateProfileAsync(UserProfile registerUser)
         {
-            return _userRepository.ReplaceByIdAsync(userProfile.Id, userProfile);
+            return _userRepository.ReplaceByIdAsync(registerUser.Id, registerUser);
         }
 
         public Task<bool> DeleteProfileAsync(string id)
