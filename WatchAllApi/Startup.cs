@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -15,17 +16,21 @@ using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Managers;
 using WatchAllApi.Models;
 using WatchAllApi.Repositories;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace WatchAllApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly IConfiguration _configuration;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
+        {
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -51,8 +56,8 @@ namespace WatchAllApi
 
             services.Configure<MongoDbConfiguration>(options =>
             {
-                options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
-                options.Database = Configuration.GetSection("MongoConnection:Database").Value;
+                options.ConnectionString = _configuration.GetSection("MongoConnection:ConnectionString").Value;
+                options.Database = _configuration.GetSection("MongoConnection:Database").Value;
             });
 
             var authPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme).RequireAuthenticatedUser().Build();
@@ -79,6 +84,30 @@ namespace WatchAllApi
                 options.SuppressModelStateInvalidFilter = true;
             });
 
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "WatchAll Api",
+                    Description = "Swagger for WatchAll API",
+                });
+                options.DescribeAllEnumsAsStrings();
+                var path = Path.Combine(AppContext.BaseDirectory, $"{_hostingEnvironment.ApplicationName}.xml");
+                options.IncludeXmlComments(path);
+
+                options.AddSecurityDefinition("Bearer", new ApiKeyScheme()
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+
+                options.IgnoreObsoleteActions();
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +125,12 @@ namespace WatchAllApi
             app.UseAuthentication();
             app.UseCors("AllowSpecificOrigin");
             app.UseMvc();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WatchAll API V1");
+            });
         }
     }
 }

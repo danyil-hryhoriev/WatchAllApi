@@ -31,8 +31,15 @@ namespace WatchAllApi.Controllers.v1
             _passwordHasher = passwordHasher;
         }
 
+        /// <summary>
+        /// Login user via login and password
+        /// </summary>
+        /// <param name="loginModel"></param>
+        /// <returns>Token</returns>
         [AllowAnonymous]
         [Route("login")]
+        [ProducesResponseType(typeof(string), 200)]
+        [ProducesResponseType(typeof(string), 404)]
         [HttpPost]
         public async Task<IActionResult> LoginUser([FromBody]UserLoginModel loginModel)
         {
@@ -54,7 +61,7 @@ namespace WatchAllApi.Controllers.v1
                 }
             }
 
-            return Unauthorized();
+            return NotFound("Profile with give login not found");
         }
 
         [AllowAnonymous]
