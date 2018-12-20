@@ -75,6 +75,7 @@ namespace WatchAllApi.Controllers.v1
                     var result = GenerateToken(profile);
                     return Ok(result);
                 }
+                return Unauthorized();
             }
 
             return NotFound("Profile with give login not found");
@@ -116,7 +117,7 @@ namespace WatchAllApi.Controllers.v1
             {
                 return BadRequest();
             }
-            
+
             userModel.Password = _passwordHasher.HashPassword(userModel, userModel.Password);
             userModel.CreatedDate = DateTime.Now;
             userModel.Role = UserRole.User;
