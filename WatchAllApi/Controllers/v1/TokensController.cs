@@ -57,14 +57,12 @@ namespace WatchAllApi.Controllers.v1
         [HttpPost]
         public async Task<IActionResult> LoginUser([FromBody]UserLoginModel loginModel)
         {
-            UserProfile profile = null;
-
             if (string.IsNullOrEmpty(loginModel.Username) || string.IsNullOrEmpty(loginModel.Password))
             {
                 return BadRequest("Invalid model");
             }
 
-            profile = await _userManager.GetByLogin(loginModel.Username);
+            var profile = await _userManager.GetByLogin(loginModel.Username);
 
             if (profile != null)
             {
@@ -73,7 +71,7 @@ namespace WatchAllApi.Controllers.v1
                 if (user != null)
                 {
                     var result = GenerateToken(profile);
-                    return Ok(result);
+                    return Ok(new { User = user.Id, Token = result });
                 }
                 return Unauthorized();
             }
@@ -118,14 +116,14 @@ namespace WatchAllApi.Controllers.v1
                 return BadRequest();
             }
 
+            var login = new UserLoginModel() { Username = userModel.Login, Password = userModel.Password };
+
             userModel.Password = _passwordHasher.HashPassword(userModel, userModel.Password);
             userModel.CreatedDate = DateTime.Now;
             userModel.Role = UserRole.User;
 
             await _userManager.InsertProfileAsync(userModel);
-
-            var login = new UserLoginModel() { Username = userModel.Login, Password = userModel.Password };
-
+            
             var user = _authorizationManager.Authenticate(login, userModel);
             if (user == null)
             {
@@ -133,16 +131,17 @@ namespace WatchAllApi.Controllers.v1
             }
 
             var result = GenerateToken(userModel);
-            return Ok(result);
+            return Ok(new {Token = result});
         }
 
         /// <summary>
         /// Seeds basic users
         /// </summary>
+        /// <response code="200">Basic users seeded</response>
         /// <returns></returns>
         [AllowAnonymous]
         [Route("seed"), HttpPost]
-        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 200)]
         public async Task<IActionResult> SeedAdmin()
         {
             var profiles = new[]

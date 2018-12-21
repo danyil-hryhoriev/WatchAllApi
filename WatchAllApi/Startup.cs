@@ -49,7 +49,9 @@ namespace WatchAllApi
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
                         .AllowAnyMethod());
             });
 

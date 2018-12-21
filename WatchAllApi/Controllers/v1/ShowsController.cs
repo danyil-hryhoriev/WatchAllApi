@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WatchAllApi.Interfaces.Managers;
@@ -50,6 +51,7 @@ namespace WatchAllApi.Controllers.v1
             var show = await _showManager.GetTopShows();
             List<ShowModel> top = new List<ShowModel>();
 
+            if(!show.Any()) return Ok(top);
             for (int i = 0; i < 5; i++)
             {
                 top.Add(show[rand.Next(100)]);
