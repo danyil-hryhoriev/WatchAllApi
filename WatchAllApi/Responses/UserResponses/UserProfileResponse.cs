@@ -1,93 +1,89 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson.Serialization.IdGenerators;
 using WatchAllApi.Enums;
+using WatchAllApi.Models;
 
-namespace WatchAllApi.Models
+namespace WatchAllApi.Responses.UserResponses
 {
     /// <summary>
-    /// Full user model
+    /// Full user model response
     /// </summary>
     [DataContract]
-    public class UserProfile
+    public class UserProfileRequest
     {
         /// <summary>
-        /// Constructor for profile
+        /// Id from DB
         /// </summary>
-        public UserProfile()
-        {
-            CreatedDate = DateTime.UtcNow;
-        }
-
-        /// <summary>
-        /// Unique id
-        /// </summary>
-        [BsonId(IdGenerator = typeof(StringObjectIdGenerator))]
-        [DataMember, Required(AllowEmptyStrings = false)]
+        [DataMember]
         public string Id { get; set; }
 
         /// <summary>
         /// Login
         /// </summary>
-        [BsonElement("login")]
         [DataMember]
         public string Login { get; set; }
 
         /// <summary>
-        /// Password
-        /// </summary>
-        [BsonElement("password")]
-        [DataMember]
-        public string Password { get; set; }
-
-        /// <summary>
         /// Firstname
         /// </summary>
-        [BsonElement("firstName")]
         [DataMember]
         public string FirstName { get; set; }
 
         /// <summary>
         /// LastName
         /// </summary>
-        [BsonElement("lastName")]
         [DataMember]
         public string LastName { get; set; }
 
         /// <summary>
         /// Role of user
         /// </summary>
-        [BsonElement("role")]
         [DataMember]
         public UserRole Role { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
-        [BsonElement("email")]
+        [DataMember]
         public string Email { get; set; }
 
         /// <summary>
         /// Phone
         /// </summary>
-        [BsonElement("phone")]
+        [DataMember]
         public string Phone { get; set; }
 
         /// <summary>
         /// City
         /// </summary>
-        [BsonElement("city")]
+        [DataMember]
         public string City { get; set; }
 
         /// <summary>
         /// Date of user creation
         /// </summary>
-        [BsonElement("createdDate")]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         [DataMember]
-        public DateTime CreatedDate { get; set; }   // date and time
+        public DateTime CreatedDate { get; set; }
+
+        /// <summary>
+        /// Create response from model
+        /// </summary>
+        /// <param name="userProfile">Model that will be transform to response</param>
+        /// <returns></returns>
+        public static UserProfileRequest Create(UserProfile userProfile)
+        {
+            return new UserProfileRequest
+            {
+                Id = userProfile.Id,
+                Role = userProfile.Role,
+                Login = userProfile.Login,
+                LastName = userProfile.LastName,
+                Email = userProfile.Email,
+                CreatedDate = userProfile.CreatedDate,
+                FirstName = userProfile.FirstName,
+                City = userProfile.City,
+                Phone = userProfile.Phone
+            };
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace WatchAllApi.Models
     /// <summary>
     /// Model of episode
     /// </summary>
+    [BsonIgnoreExtraElements]
     public class EpisodeModel
     {
         /// <summary>
@@ -58,5 +59,12 @@ namespace WatchAllApi.Models
         [BsonElement("description")]
         [DataMember]
         public string Description { get; set; }
+
+        /// <summary>
+        /// Id of season
+        /// </summary>
+        [BsonElement("season_Id")]
+        [DataMember]
+        public string SeasonId { get; set; }
     }
 }

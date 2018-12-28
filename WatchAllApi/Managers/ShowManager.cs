@@ -46,9 +46,10 @@ namespace WatchAllApi.Managers
         /// </summary>
         /// <param name="id">Id of existing show</param>
         /// <returns></returns>
-        public Task<ShowModel> GetShowById(string id)
+        public async Task<ShowModel> GetShowById(string id)
         {
-            return _showRepository.FindAsync(id);
+            var res = await _seasonRepository.FindByShowId(id);
+            return await _showRepository.FindAsync(id);
         }
 
         /// <summary>
@@ -122,6 +123,20 @@ namespace WatchAllApi.Managers
                 {
                     var n = await ToNormal(item, chanels, genres);
                     await _showRepository.InsertAsync(n);
+
+                    foreach (var seasonsId in n.SeasonsIds)
+                    {
+                        var season = await _seasonRepository.FindAsync(seasonsId);
+                        season.ShowId = n.Id;
+                        await _seasonRepository.ReplaceByIdAsync(seasonsId, season);
+
+                        foreach (var episodesId in season.EpisodesIds)
+                        {
+                            var episode = await _episodeRepository.FindAsync(episodesId);
+                            episode.SeasonId = season.Id;
+                            await _episodeRepository.ReplaceByIdAsync(episodesId, episode);
+                        }
+                    }
                 }
             }
         }

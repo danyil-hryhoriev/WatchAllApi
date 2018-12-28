@@ -1,4 +1,6 @@
-﻿using WatchAllApi.Models;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using WatchAllApi.Models;
 
 namespace WatchAllApi.Interfaces.Repositories
 {
@@ -7,5 +9,11 @@ namespace WatchAllApi.Interfaces.Repositories
     /// </summary>
     public interface ISeasonRepository: IRepositoryBase<SeasonModel>
     {
+        /// <summary>
+        /// Get list of season according to correspond show
+        /// </summary>
+        /// <param name="showId"></param>
+        /// <returns></returns>
+        Task<List<SeasonModel>> FindByShowId(string showId);
     }
 }
