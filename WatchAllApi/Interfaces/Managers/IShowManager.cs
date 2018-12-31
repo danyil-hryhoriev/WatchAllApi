@@ -48,7 +48,7 @@ namespace WatchAllApi.Interfaces.Managers
         /// Returns Top-100 shows by rating
         /// </summary>
         /// <returns></returns>
-        Task<List<ShowModel>> GetTopShows();
+        Task<List<ShowModel>> GetFilteredShows(string name, int count);
 
         /// <summary>
         /// Seeds DB by Data from files

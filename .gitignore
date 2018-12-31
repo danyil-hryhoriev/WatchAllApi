@@ -7,3 +7,5 @@
 /.vs/config
 /WatchAllApi/DataInit
 /WatchAllApi/DataInit.rar
+/WatchAllApi/bin/Release/netcoreapp2.1
+/WatchAllApi/Properties/PublishProfiles

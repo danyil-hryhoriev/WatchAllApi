@@ -14,6 +14,6 @@ namespace WatchAllApi.Interfaces.Repositories
         /// </summary>
         /// <param name="countOfEnt">Count of top</param>
         /// <returns></returns>
-        Task<List<ShowModel>> GetFirstTop(int countOfEnt);
+        Task<List<ShowModel>> GetFiltered(string name, int countOfEnt);
     }
 }

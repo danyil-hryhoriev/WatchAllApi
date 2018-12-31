@@ -97,9 +97,9 @@ namespace WatchAllApi.Managers
         /// Returns Top-100 shows by rating
         /// </summary>
         /// <returns></returns>
-        public async Task<List<ShowModel>> GetTopShows()
+        public async Task<List<ShowModel>> GetFilteredShows(string name, int count)
         {
-           return await _showRepository.GetFirstTop(100);
+           return await _showRepository.GetFiltered(name, count);
         }
 
         #region Seed DB

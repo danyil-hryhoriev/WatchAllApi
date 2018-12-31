@@ -45,19 +45,12 @@ namespace WatchAllApi.Controllers.v1
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("top100")]
-        public async Task<IActionResult> GetTopShows()
+        [Route("find")]
+        public async Task<IActionResult> GetFilteredShows([FromQuery] string name, [FromQuery] int count)
         {
-            var show = await _showManager.GetTopShows();
-            List<ShowModel> top = new List<ShowModel>();
+            var show = await _showManager.GetFilteredShows(name, count);
 
-            if(!show.Any()) return Ok(top);
-            for (int i = 0; i < 5; i++)
-            {
-                top.Add(show[rand.Next(100)]);
-            }
-
-            return Ok(top);
+            return Ok(show);
         }
 
         /// <summary>

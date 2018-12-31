@@ -1,9 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
+using FindOptions = MongoDB.Driver.FindOptions;
 
 namespace WatchAllApi.Repositories
 {
@@ -28,11 +33,15 @@ namespace WatchAllApi.Repositories
         /// <summary>
         /// Returns top shows by rating
         /// </summary>
-        /// <param name="countOfEnt">Count of top</param>
+        /// <param name="name"></param>
+        /// <param name="count"></param>
         /// <returns></returns>
-        public Task<List<ShowModel>> GetFirstTop(int countOfEnt)
+        public async Task<List<ShowModel>> GetFiltered(string name, int count)
         {
-            return Task.Run(() => QueryWithFilter(x => x.Rating > 7.9).Take(countOfEnt).ToList());
+            FilterDefinition<ShowModel> filter = Builders<ShowModel>.Filter.Empty;
+            filter &= Builders<ShowModel>.Filter.Where(x => x.Name.Contains(name));
+            var res = MongoDatabase.GetCollection<ShowModel>(CollectionName).Find(filter).Limit(count);
+            return await res.ToListAsync();
         }
     }
 }
