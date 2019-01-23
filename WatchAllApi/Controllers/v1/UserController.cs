@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WatchAllApi.Interfaces.Managers;
+using WatchAllApi.Models;
 using WatchAllApi.Requests.UserRequests;
 using WatchAllApi.Responses.UserResponses;
 

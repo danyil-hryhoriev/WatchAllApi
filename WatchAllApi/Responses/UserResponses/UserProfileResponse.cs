@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using WatchAllApi.Enums;
 using WatchAllApi.Models;
+using WatchAllApi.Models.UserStat;
 
 namespace WatchAllApi.Responses.UserResponses
 {
@@ -60,6 +62,12 @@ namespace WatchAllApi.Responses.UserResponses
         public string City { get; set; }
 
         /// <summary>
+        /// Shows
+        /// </summary>
+        [DataMember]
+        public List<UserShowModel> Shows { get; set; }
+
+        /// <summary>
         /// Date of user creation
         /// </summary>
         [DataMember]
@@ -82,6 +90,7 @@ namespace WatchAllApi.Responses.UserResponses
                 CreatedDate = userProfile.CreatedDate,
                 FirstName = userProfile.FirstName,
                 City = userProfile.City,
+                Shows = userProfile.Shows == null ? new List<UserShowModel>() : userProfile.Shows,
                 Phone = userProfile.Phone
             };
         }

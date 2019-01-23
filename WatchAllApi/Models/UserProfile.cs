@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using WatchAllApi.Enums;
+using WatchAllApi.Models.UserStat;
 
 namespace WatchAllApi.Models
 {
@@ -81,6 +82,12 @@ namespace WatchAllApi.Models
         /// </summary>
         [BsonElement("city")]
         public string City { get; set; }
+
+        /// <summary>
+        /// Shows that user watching
+        /// </summary>
+        [BsonElement("shows")]
+        public List<UserShowModel> Shows { get; set; }
 
         /// <summary>
         /// Date of user creation

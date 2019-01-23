@@ -1,5 +1,7 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 using WatchAllApi.Models;
+using WatchAllApi.Models.UserStat;
 
 namespace WatchAllApi.Requests.UserRequests
 {
@@ -44,7 +46,13 @@ namespace WatchAllApi.Requests.UserRequests
         /// </summary>
         [DataMember]
         public string City { get; set; }
-        
+
+        /// <summary>
+        /// Shows
+        /// </summary>
+        [DataMember]
+        public List<UserShowModel> Shows { get; set; }
+
         /// <summary>
         ///  Create model of UserProfile from request
         /// </summary>
@@ -57,6 +65,7 @@ namespace WatchAllApi.Requests.UserRequests
             userProfile.FirstName = FirstName;
             userProfile.City = City;
             userProfile.Phone = Phone;
+            userProfile.Shows = Shows;
 
             return userProfile;
         }
