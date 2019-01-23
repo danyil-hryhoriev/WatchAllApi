@@ -29,7 +29,7 @@ namespace WatchAllApi.Repositories
         /// <summary>
         /// Get list of season according to correspond show
         /// </summary>
-        /// <param name="showId"></param>
+        /// <param name="showId">Id of parent show</param>
         /// <returns></returns>
         public async Task<List<SeasonModel>> FindByShowId(string showId)
         {
@@ -37,7 +37,7 @@ namespace WatchAllApi.Repositories
             var cursor = await MongoDatabase.GetCollection<SeasonModel>(CollectionName)
                 .FindAsync(filter);
 
-            return cursor.ToList();
+            return await cursor.ToListAsync();
         }
     }
 }

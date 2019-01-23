@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WatchAllApi.Interfaces.Managers;
 using WatchAllApi.Models;
+using WatchAllApi.Models.Dto;
 
 namespace WatchAllApi.Controllers.v1
 {
@@ -63,12 +64,31 @@ namespace WatchAllApi.Controllers.v1
         /// <returns></returns>
         [ProducesResponseType(typeof(string), 400)]
         [ProducesResponseType(typeof(string), 404)]
-        [ProducesResponseType(typeof(ChannelModel), 200)]
+        [ProducesResponseType(typeof(ShowDtoModel), 200)]
         [HttpGet]
-        [Route("{id}")]
+        [Route("dto/{id}")]
         public async Task<IActionResult> GetShowById([FromRoute] string id)
         {
             var show = await _showManager.GetShowById(id);
+            return Ok(show);
+        }
+
+        /// <summary>
+        /// Returns show by Id from DB
+        /// </summary>
+        /// <param name="id">The id of show in DB</param>
+        /// <response code="404">Show is not exists</response>
+        /// <response code="400">Id is null or empty</response>
+        /// <response code="200">Returns existing show model</response>
+        /// <returns></returns>
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 404)]
+        [ProducesResponseType(typeof(ShowDtoModel), 200)]
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetDtoShowById([FromRoute] string id)
+        {
+            var show = await _showManager.GetDtoShow(id);
             return Ok(show);
         }
 

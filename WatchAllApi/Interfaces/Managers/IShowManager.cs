@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using WatchAllApi.Models;
+using WatchAllApi.Models.Dto;
 
 namespace WatchAllApi.Interfaces.Managers
 {
@@ -9,7 +10,6 @@ namespace WatchAllApi.Interfaces.Managers
     /// </summary>
     public interface IShowManager
     {
-
         /// <summary>
         /// Returns model of show by id
         /// </summary>
@@ -49,6 +49,20 @@ namespace WatchAllApi.Interfaces.Managers
         /// </summary>
         /// <returns></returns>
         Task<List<ShowModel>> GetFilteredShows(string name, int count);
+
+        /// <summary>
+        /// Get model of show with all fields from ShowModel
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        Task<ShowDtoModel> GetDtoShow(ShowModel model);
+
+        /// <summary>
+        /// Get model of show with all fields from ShowModel
+        /// </summary>
+        /// <param name="showId">Id of show</param>
+        /// <returns></returns>
+        Task<ShowDtoModel> GetDtoShow(string showId);
 
         /// <summary>
         /// Seeds DB by Data from files

@@ -9,6 +9,7 @@ using WatchAllApi.Enums;
 using WatchAllApi.Interfaces.Managers;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
+using WatchAllApi.Models.Dto;
 
 namespace WatchAllApi.Managers
 {
@@ -94,12 +95,104 @@ namespace WatchAllApi.Managers
         }
 
         /// <summary>
+        /// Get model of show with all fields from ShowModel
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ShowDtoModel> GetDtoShow(ShowModel model)
+        {
+            var chanel = await _channelRepository.FindAsync(model.ChanelId);
+            var genres = new List<GenreModel>();
+            foreach (var id in model.GenresIds)
+            {
+                genres.Add(await _genreRepository.FindAsync(id));
+            }
+
+            var seasonsDto = new List<SeasonDtoModel>();
+            var seasons = await _seasonRepository.FindByShowId(model.Id);
+            foreach (var season in seasons)
+            {
+                var episodes = await _episodeRepository.FindBySeasonId(season.Id);
+                seasonsDto.Add(SeasonModelToDto(season, episodes));
+            }
+
+            return ShowModelToDto(model, chanel, genres, seasonsDto);
+        }
+
+        /// <summary>
+        /// Get model of show with all fields from ShowModel
+        /// </summary>
+        /// <param name="showId">Id of show</param>
+        /// <returns></returns>
+        public async Task<ShowDtoModel> GetDtoShow(string showId)
+        {
+            var show = await _showRepository.FindAsync(showId);
+            return await GetDtoShow(show);
+        }
+
+        /// <summary>
         /// Returns Top-100 shows by rating
         /// </summary>
         /// <returns></returns>
         public async Task<List<ShowModel>> GetFilteredShows(string name, int count)
         {
            return await _showRepository.GetFiltered(name, count);
+        }
+
+        /// <summary>
+        /// Converting ShowModel to ShowDtoModel
+        /// </summary>
+        /// <param name="showModel">Show model that will be converted</param>
+        /// <param name="channelModel">Chanel model</param>
+        /// <param name="genreModels">Genre models</param>
+        /// <param name="seasonModels">Season models</param>
+        /// <returns></returns>
+        private ShowDtoModel ShowModelToDto(ShowModel showModel, ChannelModel channelModel, List<GenreModel> genreModels, List<SeasonDtoModel> seasonModels)
+        {
+            return new ShowDtoModel
+            {
+                Name = showModel.Name,
+                Id = showModel.Id,
+                Aliases = showModel.Aliases,
+                Actors = showModel.Actors,
+                Chanel = channelModel,
+                DayOfAir = showModel.DayOfAir,
+                Description = showModel.Description,
+                Duration = showModel.Duration,
+                Genres = genreModels,
+                ImageMedium = showModel.ImageMedium,
+                ImageOriginal = showModel.ImageOriginal,
+                ImdbId = showModel.ImdbId,
+                PremiereDate = showModel.PremiereDate,
+                Rating = showModel.Rating,
+                Seasons = seasonModels,
+                ShowUrl = showModel.ShowUrl,
+                Status = showModel.Status,
+                TheTvDbId = showModel.TheTvDbId,
+                TimeOfAir = showModel.TimeOfAir
+            };
+        }
+
+        /// <summary>
+        /// Converting SeasonModel to ShowDtoModel
+        /// </summary>
+        /// <param name="seasonModel">Season model that will be converted</param>
+        /// <param name="episodeModels">List of episodes</param>
+        /// <returns></returns>
+        private SeasonDtoModel SeasonModelToDto(SeasonModel seasonModel, List<EpisodeModel> episodeModels)
+        {
+            return new SeasonDtoModel
+            {
+                Id = seasonModel.Id,
+                Description = seasonModel.Description,
+                PremiereDate = seasonModel.PremiereDate,
+                ShowId = seasonModel.ShowId,
+                EndDate = seasonModel.EndDate,
+                EpisodeQty = seasonModel.EpisodeQty,
+                Episodes = episodeModels,
+                Image = seasonModel.Image,
+                OrderId = seasonModel.OrderId
+            };
         }
 
         #region Seed DB

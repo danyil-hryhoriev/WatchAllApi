@@ -33,11 +33,12 @@ namespace WatchAllApi.Repositories
         /// <returns></returns>
         public async Task<List<EpisodeModel>> FindBySeasonId(string seasonId)
         {
-            var filter = new BsonDocument("seasonId", seasonId);
-            var cursor = await MongoDatabase.GetCollection<EpisodeModel>(CollectionName)
-                .FindAsync(filter);
+            var filter = new BsonDocument("season_Id", seasonId);
+            var cursor =  MongoDatabase.GetCollection<EpisodeModel>(CollectionName);
 
-            return cursor.ToList();
+                var res = await cursor.FindAsync(filter);
+
+            return await res.ToListAsync();
         }
     }
 }

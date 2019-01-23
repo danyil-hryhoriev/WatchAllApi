@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using WatchAllApi.Interfaces.Repositories;
 using WatchAllApi.Models;
-using FindOptions = MongoDB.Driver.FindOptions;
 
 namespace WatchAllApi.Repositories
 {
