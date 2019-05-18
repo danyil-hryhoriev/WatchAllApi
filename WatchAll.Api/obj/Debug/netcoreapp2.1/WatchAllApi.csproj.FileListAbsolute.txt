@@ -1,0 +1,15 @@
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/bin/Debug/netcoreapp2.1/WatchAllApi.deps.json
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/bin/Debug/netcoreapp2.1/WatchAllApi.runtimeconfig.json
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/bin/Debug/netcoreapp2.1/WatchAllApi.runtimeconfig.dev.json
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/bin/Debug/netcoreapp2.1/WatchAllApi.dll
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/bin/Debug/netcoreapp2.1/WatchAllApi.pdb
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/bin/Debug/netcoreapp2.1/WatchAllApi.xml
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.csproj.CoreCompileInputs.cache
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.RazorAssemblyInfo.cache
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.RazorAssemblyInfo.cs
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.AssemblyInfoInputs.cache
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.AssemblyInfo.cs
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.RazorTargetAssemblyInfo.cache
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.dll
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi/WatchAllApi.xml
+/Users/danyil.hryhoriev/Desktop/repos/Home/WatchAllApi/WatchAllApi/obj/Debug/netcoreapp2.1/WatchAllApi.pdb

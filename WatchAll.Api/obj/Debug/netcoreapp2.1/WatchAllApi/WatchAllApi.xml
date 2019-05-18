@@ -1,0 +1,2157 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WatchAll.Api</name>
+    </assembly>
+    <members>
+        <member name="T:WatchAll.Api.Constants.RoleConstants">
+            <summary>
+            Role constants.
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Constants.RoleConstants.ADMIN">
+            <summary>
+            The admin.
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Constants.RoleConstants.MODERATOR">
+            <summary>
+            The moderator.
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Constants.RoleConstants.USER">
+            <summary>
+            The user.
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Controllers.v1.ChanelsController">
+            <summary>
+            The controller allows managing the channels
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ChanelsController.#ctor(WatchAll.Api.Interfaces.Repositories.IChannelRepository)">
+            <summary>
+            ChannelsController constructor
+            </summary>
+            <param name="channelRepository"></param>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ChanelsController.GetAllChanels">
+            <summary>
+            Returns all channels that contains in DB
+            </summary>
+            <returns></returns>
+            <response code="200">Returns all channels that contains in DB</response>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ChanelsController.GetChanelById(System.String)">
+            <summary>
+            Returns channel by Id from DB
+            </summary>
+            <param name="id">The id of channel in DB</param>
+            <response code="404">Channel is not exists</response>
+            <response code="400">Id is null or empty</response>
+            <response code="200">Returns existing channel model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ChanelsController.PostChanel(WatchAll.Api.Models.ChannelModel)">
+            <summary>
+            Saves the model in the database and return it
+            </summary>
+            <param name="chanelModel">The model of the channel that will be saved in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">Returns saved channel model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ChanelsController.PutChanel(System.String,WatchAll.Api.Models.ChannelModel)">
+            <summary>
+            Updates the existing model in the database and return it
+            </summary>
+            <param name="id">The id of channel in DB</param>
+            <param name="chanelModel">The model of channel that will be saved in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">Returns updated channel model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ChanelsController.DeleteChanelById(System.String)">
+            <summary>
+            Delete the existing model in the database
+            </summary>
+            <param name="id">The id of channel in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">Channel was deleted successfully</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ChanelsController.SeedDatabase">
+            <summary>
+            Seed the database
+            </summary>
+            <response code="404">File with channels not found</response>
+            <response code="200">DataBase was seeded successfully</response>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Controllers.v1.GenresController">
+            <summary>
+            The controller allows managing the genres
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.GenresController.#ctor(WatchAll.Api.Interfaces.Repositories.IGenreRepository)">
+            <summary>
+            GenresController constructor
+            </summary>
+            <param name="genreRepository"></param>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.GenresController.GetAllChanels">
+            <summary>
+            Returns all genres that contains in DB
+            </summary>
+            <returns></returns>
+            <response code="200">Returns all genres that contains in DB</response>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.GenresController.GetChanelById(System.String)">
+            <summary>
+            Returns genre by Id from DB
+            </summary>
+            <param name="id">The id of genre in DB</param>
+            <response code="404">genre is not exists</response>
+            <response code="400">Id is null or empty</response>
+            <response code="200">Returns existing genre model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.GenresController.PostChanel(WatchAll.Api.Models.GenreModel)">
+            <summary>
+            Saves the model in the database and return it
+            </summary>
+            <param name="genreModel">The model of the genre that will be saved in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">Returns saved genre model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.GenresController.PutChanel(System.String,WatchAll.Api.Models.GenreModel)">
+            <summary>
+            Updates the existing model in the database and return it
+            </summary>
+            <param name="id">The id of genre in DB</param>
+            <param name="genreModel">The model of genre that will be saved in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">Returns updated genre model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.GenresController.DeleteChanelById(System.String)">
+            <summary>
+            Delete the existing model in the database
+            </summary>
+            <param name="id">The id of genre in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">genre was deleted successfully</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.GenresController.SeedDatabase">
+            <summary>
+            Seed the database
+            </summary>
+            <response code="404">File with channels not found</response>
+            <response code="200">DataBase was seeded successfully</response>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Controllers.v1.ShowsController">
+            <summary>
+            The controller allows managing the shows
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.#ctor(WatchAll.Api.Interfaces.Managers.IShowManager)">
+            <summary>
+            ShowsController constructor
+            </summary>
+            <param name="showManager"></param>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.GetAllShows">
+            <summary>
+            Returns all channels that contains in DB
+            </summary>
+            <returns></returns>
+            <response code="200">Returns all channels that contains in DB</response>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.GetFilteredShows(System.String,System.Int32)">
+            <summary>
+            Returns Top-100 shows by rating
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.GetShowById(System.String)">
+            <summary>
+            Returns show by Id from DB
+            </summary>
+            <param name="id">The id of show in DB</param>
+            <response code="404">Show is not exists</response>
+            <response code="400">Id is null or empty</response>
+            <response code="200">Returns existing show model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.GetDtoShowById(System.String)">
+            <summary>
+            Returns show by Id from DB
+            </summary>
+            <param name="id">The id of show in DB</param>
+            <response code="404">Show is not exists</response>
+            <response code="400">Id is null or empty</response>
+            <response code="200">Returns existing show model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.PostShow(WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Saves the model in the database and return it
+            </summary>
+            <param name="showModel">The model of the show that will be saved in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">Returns saved show model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.PutShow(System.String,WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Updates the existing model in the database and return it
+            </summary>
+            <param name="id">The id of show in DB</param>
+            <param name="showModel">The model of show that will be saved in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">Returns updated show model</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.ShowsController.DeleteShowById(System.String)">
+            <summary>
+            Delete the existing model in the database
+            </summary>
+            <param name="id">The id of show in DB</param>
+            <response code="400">Some fields in model are invalid or null</response>
+            <response code="200">show was deleted successfully</response>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Controllers.v1.TokensController">
+            <summary>
+            The controller allows managing the authorization
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.TokensController.#ctor(WatchAll.Api.Interfaces.Managers.IUserManager,WatchAll.Api.Interfaces.Managers.IAuthorizationManager,Microsoft.AspNetCore.Identity.IPasswordHasher{WatchAll.Api.Models.UserProfile})">
+            <summary>
+            TokensController constructor
+            </summary>
+            <param name="userManager"></param>
+            <param name="authorizationManager"></param>
+            <param name="passwordHasher"></param>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.TokensController.LoginUser(WatchAll.Api.Models.UserLoginModel)">
+            <summary>
+            Login user via login and password
+            </summary>
+            <param name="loginModel">Model for authorization</param>
+            <response code="404">Profile with give login not found</response>
+            <response code="400">Invalid login model</response>
+            <response code="200">Returns new token</response>
+            <returns>Token</returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.TokensController.RegisterUser(WatchAll.Api.Requests.RegisterUserRequest)">
+            <summary>
+            Register new user
+            </summary>
+            <param name="registerRequest">Model of new user</param>
+            <response code="401">Error occuring when logging</response>
+            <response code="400">User already exist or invalid model</response>
+            <response code="200">Returns new token</response>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.TokensController.SeedAdmin">
+            <summary>
+            Seeds basic users
+            </summary>
+            <response code="200">Basic users seeded</response>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Controllers.v1.UserController">
+            <summary>
+            The controller allows managing the users
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.UserController.#ctor(WatchAll.Api.Interfaces.Managers.IUserManager)">
+            <summary>
+            UserController constructor
+            </summary>
+            <param name="userManager"></param>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.UserController.GetInfo">
+            <summary>
+            Returns info about user
+            </summary>
+            <returns></returns>
+            <response code="200">Mock</response>
+        </member>
+        <member name="M:WatchAll.Api.Controllers.v1.UserController.UpdateUserInfo(WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest)">
+            <summary>
+            Update user info
+            </summary>
+            <returns></returns>
+            <response code="200">Mock</response>
+        </member>
+        <member name="T:WatchAll.Api.Enums.GenderEnum">
+            <summary>
+            Enum of genders
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.GenderEnum.Male">
+            <summary>
+            Male
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.GenderEnum.Female">
+            <summary>
+            Female
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Enums.ShowStatusEnum">
+            <summary>
+            Enum of possible statuses of show
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.ShowStatusEnum.OnAir">
+            <summary>
+            Show released
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.ShowStatusEnum.Ended">
+            <summary>
+            Show was closed
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.ShowStatusEnum.Undefined">
+            <summary>
+            The fate of the show is not resolved
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.ShowStatusEnum.Survey">
+            <summary>
+            The show extended
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Enums.UserRole">
+            <summary>
+            Enum of user roles in application
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.UserRole.Admin">
+            <summary>
+            Administrator
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.UserRole.Moderator">
+            <summary>
+            Moderator
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.UserRole.User">
+            <summary>
+            User
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Enums.WatchingStatusEnum">
+            <summary>
+            Describe status of serial for user
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.WatchingStatusEnum.Watching">
+            <summary>
+            User is watching serial now 
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.WatchingStatusEnum.WillWatch">
+            <summary>
+            User will be watching serial in future
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.WatchingStatusEnum.Holding">
+            <summary>
+            User isn't watching serial now
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.WatchingStatusEnum.Watched">
+            <summary>
+            User has watched the show
+            </summary>
+        </member>
+        <member name="F:WatchAll.Api.Enums.WatchingStatusEnum.Untracked">
+            <summary>
+            User doesn't tracking serial
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Extensions.ManagerExtensions">
+            <summary>
+            Extensions for managers
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.IDbConfiguration">
+            <summary>
+            Configuration of DB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Interfaces.IDbConfiguration.ConnectionString">
+            <summary>
+            Connection string
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Interfaces.IDbConfiguration.Database">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Managers.IAuthorizationManager">
+            <summary>
+            Authorization manager
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IAuthorizationManager.Authenticate(WatchAll.Api.Models.UserLoginModel,WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Authorizing existing user
+            </summary>
+            <param name="loginModel">Model for authorization</param>
+            <param name="profile">Existing user profile</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Managers.ICacheManager">
+            <summary>
+            Cache manager.
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.GetAllChanels">
+            <summary>
+            Gets all chanels.
+            </summary>
+            <returns>The all chanels.</returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.GetChanelById(System.String)">
+            <summary>
+            Gets the chanel by identifier.
+            </summary>
+            <returns>The chanel by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.CreateChanel(WatchAll.Api.Models.ChannelModel)">
+            <summary>
+            Creates the chanel.
+            </summary>
+            <returns>The chanel.</returns>
+            <param name="chanelModel">Chanel model.</param>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.RemoveChanelById(System.String)">
+            <summary>
+            Removes the chanel by identifier.
+            </summary>
+            <returns>The chanel by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.UpdateChanel(WatchAll.Api.Models.ChannelModel)">
+            <summary>
+            Updates the chanel.
+            </summary>
+            <returns>The chanel.</returns>
+            <param name="chanelModel">Chanel model.</param>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.GetAllGenres">
+            <summary>
+            Gets all genres.
+            </summary>
+            <returns>The all genres.</returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.GetGenreById(System.String)">
+            <summary>
+            Gets the genre by identifier.
+            </summary>
+            <returns>The genre by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.CreateGenre(WatchAll.Api.Models.GenreModel)">
+            <summary>
+            Creates the genre.
+            </summary>
+            <returns>The genre.</returns>
+            <param name="genreModel">Genre model.</param>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.RemoveGenreById(System.String)">
+            <summary>
+            Removes the genre by identifier.
+            </summary>
+            <returns>The genre by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.ICacheManager.UpdateGenre(WatchAll.Api.Models.GenreModel)">
+            <summary>
+            Updates the genre.
+            </summary>
+            <returns>The genre.</returns>
+            <param name="genreModel">Genre model.</param>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Managers.IShowManager">
+            <summary>
+            Managing of shows and business logic for them
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.GetShowById(System.String)">
+            <summary>
+            Returns model of show by id
+            </summary>
+            <param name="id">Id of existing show</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.GetAllShows">
+            <summary>
+            Returns all existing shows in DB
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.InsertShow(WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Inserts new show in Db
+            </summary>
+            <param name="showModel">Model of show that will be inserted</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.UpdateShow(WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Updates existing show in Db
+            </summary>
+            <param name="showModel">Model of show that will be updated</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.RemoveShow(System.String)">
+            <summary>
+            Deletes existing show in Db
+            </summary>
+            <param name="id">Id of show that will be deleted</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.GetFilteredShows(System.String,System.Int32)">
+            <summary>
+            Returns Top-100 shows by rating
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.GetDtoShow(WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Get model of show with all fields from ShowModel
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IShowManager.GetDtoShow(System.String)">
+            <summary>
+            Get model of show with all fields from ShowModel
+            </summary>
+            <param name="showId">Id of show</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Managers.IUserManager">
+            <summary>
+            Managing of users and business logic for them
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IUserManager.GetById(System.String)">
+            <summary>
+            Returns model of user by id
+            </summary>
+            <param name="id">Id of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IUserManager.GetByLogin(System.String)">
+            <summary>
+            Returns model of user by user login
+            </summary>
+            <param name="login">Login of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IUserManager.GetByEmail(System.String)">
+            <summary>
+            Returns model of user by email
+            </summary>
+            <param name="email">Email of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IUserManager.GetAllUsers">
+            <summary>
+            Returns all existing shows in DB
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IUserManager.InsertProfileAsync(WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Inserts new user in Db
+            </summary>
+            <param name="userProfile">Model of user that will be inserted</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IUserManager.UpdateProfileAsync(WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Updates existing user in Db
+            </summary>
+            <param name="userProfile">Model of user that will be updated</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Managers.IUserManager.DeleteProfileAsync(System.String)">
+            <summary>
+            Deletes existing user in Db
+            </summary>
+            <param name="id">Id of user that will be deleted</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Repositories.IChannelRepository">
+            <summary>
+            Manages channels in the database
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Repositories.IEpisodeRepository">
+            <summary>
+            Manages episodes in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IEpisodeRepository.FindBySeasonId(System.String)">
+            <summary>
+            Get list of episodes according to correspond show
+            </summary>
+            <param name="seasonId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Repositories.IGenreRepository">
+            <summary>
+            Manages genres in the database
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1">
+            <summary>
+            Base repository for DB
+            </summary>
+            <typeparam name="T">Represents type that will be store in DB</typeparam>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.InsertAsync(`0)">
+            <summary>
+            Insert new entity of T in DB
+            </summary>
+            <param name="entity">The entity of T that will be inserted in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.InsertRangeAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Insert range of new entities of T in DB
+            </summary>
+            <param name="entities">The range of entities of T that will be inserted in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.ReplaceAsync(`0,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Replace existing entity of T in DB by expression
+            </summary>
+            <param name="entity">The entity of T that will be replace existing record in DB</param>
+            <param name="expression">Predicate for find entity in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.ReplaceByIdAsync(System.String,`0)">
+            <summary>
+            Replace existing entity of T in DB by expression
+            </summary>
+            <param name="id">Id of entity that will be replaced</param>
+            <param name="entity">The entity of T that will be inserted in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.DeleteAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Delete existing entity of T in DB by expression
+            </summary>
+            <param name="expression">Predicate for find entity in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.DeleteByIdAsync(System.String)">
+            <summary>
+            Delete existing entity of T in DB by expression
+            </summary>
+            <param name="id">Id of existing entity</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.FindAsync(System.String)">
+            <summary>
+            Find existing entity of T in DB by id
+            </summary>
+            <param name="key">Id of existing entity</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.FindAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Find existing entity of T in DB by expression
+            </summary>
+            <param name="expression">Predicate for find entity in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IRepositoryBase`1.SelectAllAsync">
+            <summary>
+            Get all existing entities of T in DB
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Repositories.ISeasonRepository">
+            <summary>
+            Manages seasons in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.ISeasonRepository.FindByShowId(System.String)">
+            <summary>
+            Get list of season according to correspond show
+            </summary>
+            <param name="showId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Repositories.IShowRepository">
+            <summary>
+            Manages shows in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IShowRepository.GetFiltered(System.String,System.Int32)">
+            <summary>
+            Returns top shows by rating
+            </summary>
+            <param name="name">Name</param>
+            <param name="countOfEnt">Count of top</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Interfaces.Repositories.IUserRepository">
+            <summary>
+            Manages users in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IUserRepository.FindByLogin(System.String)">
+            <summary>
+            Returns model of user by user login
+            </summary>
+            <param name="login">Login of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Interfaces.Repositories.IUserRepository.FindByEmail(System.String)">
+            <summary>
+            Returns model of user by email
+            </summary>
+            <param name="email">Email of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Managers.AuthorizationManager">
+            <summary>
+            Authorization manager
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Managers.AuthorizationManager.#ctor(Microsoft.AspNetCore.Identity.IPasswordHasher{WatchAll.Api.Models.UserProfile})">
+            <summary>
+            Constructor of Authorization manager
+            </summary>
+            <param name="passwordHasher"></param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.AuthorizationManager.Authenticate(WatchAll.Api.Models.UserLoginModel,WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Authorizing existing user
+            </summary>
+            <param name="loginModel">Model for authorization</param>
+            <param name="profile">Existing user profile</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Managers.CacheManager">
+            
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.#ctor(WatchAll.Api.Interfaces.Repositories.IChannelRepository,WatchAll.Api.Interfaces.Repositories.IGenreRepository)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WatchAllApi.Managers.CacheManager"/> class.
+            </summary>
+            <param name="channelRepository">Channel repository.</param>
+            <param name="genreRepository">Genre repository.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.LoadInCache">
+            <summary>
+            Loads the in cache.
+            </summary>
+            <returns>The in cache.</returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.GetAllChanels">
+            <summary>
+            Gets all chanels.
+            </summary>
+            <returns>The all chanels.</returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.GetChanelById(System.String)">
+            <summary>
+            Gets the chanel by identifier.
+            </summary>
+            <returns>The chanel by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.CreateChanel(WatchAll.Api.Models.ChannelModel)">
+            <summary>
+            Creates the chanel.
+            </summary>
+            <returns>The chanel.</returns>
+            <param name="chanelModel">Chanel model.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.RemoveChanelById(System.String)">
+            <summary>
+            Removes the chanel by identifier.
+            </summary>
+            <returns>The chanel by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.UpdateChanel(WatchAll.Api.Models.ChannelModel)">
+            <summary>
+            Updates the chanel.
+            </summary>
+            <returns>The chanel.</returns>
+            <param name="chanelModel">Chanel model.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.GetAllGenres">
+            <summary>
+            Gets all genres.
+            </summary>
+            <returns>The all genres.</returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.GetGenreById(System.String)">
+            <summary>
+            Gets the genre by identifier.
+            </summary>
+            <returns>The genre by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.CreateGenre(WatchAll.Api.Models.GenreModel)">
+            <summary>
+            Creates the genre.
+            </summary>
+            <returns>The genre.</returns>
+            <param name="genreModel">Genre model.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.RemoveGenreById(System.String)">
+            <summary>
+            Removes the genre by identifier.
+            </summary>
+            <returns>The genre by identifier.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.CacheManager.UpdateGenre(WatchAll.Api.Models.GenreModel)">
+            <summary>
+            Updates the genre.
+            </summary>
+            <returns>The genre.</returns>
+            <param name="genreModel">Genre model.</param>
+        </member>
+        <member name="T:WatchAll.Api.Managers.ShowManager">
+            <summary>
+            Managing of shows and business logic for them
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.#ctor(WatchAll.Api.Interfaces.Repositories.IShowRepository,WatchAll.Api.Interfaces.Repositories.IChannelRepository,WatchAll.Api.Interfaces.Repositories.IGenreRepository,WatchAll.Api.Interfaces.Repositories.ISeasonRepository,WatchAll.Api.Interfaces.Repositories.IEpisodeRepository)">
+            <summary>
+            Constructor of Show manager
+            </summary>
+            <param name="showRepository"></param>
+            <param name="channelRepository"></param>
+            <param name="genreRepository"></param>
+            <param name="seasonRepository"></param>
+            <param name="episodeRepository"></param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.GetShowById(System.String)">
+            <summary>
+            Returns model of show by id
+            </summary>
+            <param name="id">Id of existing show</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.GetAllShows">
+            <summary>
+            Returns all existing shows in DB
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.InsertShow(WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Inserts new show in Db
+            </summary>
+            <param name="showModel">Model of show that will be inserted</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.UpdateShow(WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Updates existing show in Db
+            </summary>
+            <param name="showModel">Model of show that will be updated</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.RemoveShow(System.String)">
+            <summary>
+            Deletes existing show in Db
+            </summary>
+            <param name="id">Id of show that will be deleted</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.GetDtoShow(WatchAll.Api.Models.ShowModel)">
+            <summary>
+            Get model of show with all fields from ShowModel
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.GetDtoShow(System.String)">
+            <summary>
+            Get model of show with all fields from ShowModel
+            </summary>
+            <param name="showId">Id of show</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.GetFilteredShows(System.String,System.Int32)">
+            <summary>
+            Returns Top-100 shows by rating
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.ShowModelToDto(WatchAll.Api.Models.ShowModel,WatchAll.Api.Models.ChannelModel,System.Collections.Generic.List{WatchAll.Api.Models.GenreModel},System.Collections.Generic.List{WatchAll.Api.Models.SeasonDtoModel})">
+            <summary>
+            Converting ShowModel to ShowDtoModel
+            </summary>
+            <param name="showModel">Show model that will be converted</param>
+            <param name="channelModel">Chanel model</param>
+            <param name="genreModels">Genre models</param>
+            <param name="seasonModels">Season models</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.ShowManager.SeasonModelToDto(WatchAll.Api.Models.SeasonModel,System.Collections.Generic.List{WatchAll.Api.Models.EpisodeModel})">
+            <summary>
+            Converting SeasonModel to ShowDtoModel
+            </summary>
+            <param name="seasonModel">Season model that will be converted</param>
+            <param name="episodeModels">List of episodes</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Managers.UserManager">
+            <summary>
+            Managing of users and business logic for them
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.#ctor(WatchAll.Api.Interfaces.Repositories.IUserRepository)">
+            <summary>
+            Constructor of UserManager
+            </summary>
+            <param name="userRepository"></param>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.GetById(System.String)">
+            <summary>
+            Returns model of user by id
+            </summary>
+            <param name="id">Id of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.GetByLogin(System.String)">
+            <summary>
+            Returns model of user by user login
+            </summary>
+            <param name="login">Login of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.GetByEmail(System.String)">
+            <summary>
+            Returns model of user by email
+            </summary>
+            <param name="email">Email of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.GetAllUsers">
+            <summary>
+            Returns all existing shows in DB
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.InsertProfileAsync(WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Inserts new user in Db
+            </summary>
+            <param name="userProfile">Model of user that will be inserted</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.UpdateProfileAsync(WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Updates existing user in Db
+            </summary>
+            <param name="userProfile">Model of user that will be updated</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Managers.UserManager.DeleteProfileAsync(System.String)">
+            <summary>
+            Deletes existing user in Db
+            </summary>
+            <param name="id">Id of user that will be deleted</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Models.ActorModel">
+            <summary>
+            Model of actor
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.Id">
+            <summary>
+            Unique id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.FullName">
+            <summary>
+            Full name of actor
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.Country">
+            <summary>
+            Actor's country
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.BirthDay">
+            <summary>
+            Actor's date of birth
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.DeathDay">
+            <summary>
+            Actor's date of death
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.Gender">
+            <summary>
+            Actor's gender
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.Role">
+            <summary>
+            Role of actor
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.Image">
+            <summary>
+            Actor's photo
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ActorModel.CharacterName">
+            <summary>
+            Name of character
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.AliasModel">
+            <summary>
+            Alias of show in other regions
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.AliasModel.Name">
+            <summary>
+            Alias
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.AliasModel.Region">
+            <summary>
+            Country
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.ChannelModel">
+            <summary>
+            Model of channel
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ChannelModel.Id">
+            <summary>
+            Unique ID for storage in the database
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ChannelModel.Name">
+            <summary>
+            Unique name of channel
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ChannelModel.Country">
+            <summary>
+            Channel сountry
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.SeasonDtoModel">
+            <summary>
+            Model of show season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.Id">
+            <summary>
+            Unique id of season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.OrderId">
+            <summary>
+            Season order id of correspond show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.EpisodeQty">
+            <summary>
+            Number of series in the season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.PremiereDate">
+            <summary>
+            Release date
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.EndDate">
+            <summary>
+            Season end-date
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.Image">
+            <summary>
+            Image for season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.Description">
+            <summary>
+            Description of season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.Episodes">
+            <summary>
+            Id of season episodes 
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonDtoModel.ShowId">
+            <summary>
+            Id of show
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.Dto.ShowDtoModel">
+            <summary>
+            Model of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Id">
+            <summary>
+            Unique show id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Name">
+            <summary>
+            Name of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Genres">
+            <summary>
+            Ids of show genres
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Status">
+            <summary>
+            Current status of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Duration">
+            <summary>
+            Duration of show episode
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.PremiereDate">
+            <summary>
+            Date of release
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.ShowUrl">
+            <summary>
+            Url to original
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.DayOfAir">
+            <summary>
+            Day of week when episode releases
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.TimeOfAir">
+            <summary>
+            Time of day when episode releases
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Rating">
+            <summary>
+            User rating
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Chanel">
+            <summary>
+            Id of channel
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.ImdbId">
+            <summary>
+            Id for show on IMDB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.TheTvDbId">
+            <summary>
+            Id for show on The TvDB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.ImageOriginal">
+            <summary>
+            Big image of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.ImageMedium">
+            <summary>
+            Medium image of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Description">
+            <summary>
+            Description of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Seasons">
+            <summary>
+            Ids of show seasons
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Aliases">
+            <summary>
+            Aliases of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.Dto.ShowDtoModel.Actors">
+            <summary>
+            Actors of show
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.EpisodeModel">
+            <summary>
+            Model of episode
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.Id">
+            <summary>
+            Unique id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.Name">
+            <summary>
+            Series name
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.Season">
+            <summary>
+            Id of correspond season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.OrderNumber">
+            <summary>
+            Order in correspond season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.AirDate">
+            <summary>
+            Date of release
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.Duration">
+            <summary>
+            Duration of episode
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.Description">
+            <summary>
+            Description of episode
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.EpisodeModel.SeasonId">
+            <summary>
+            Id of season
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.GenreModel">
+            <summary>
+            Model of show genre
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.GenreModel.Id">
+            <summary>
+            Unique id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.GenreModel.Name">
+            <summary>
+            Genre name
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.MongoDbConfiguration">
+            <summary>
+            Configuration of DB
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Models.MongoDbConfiguration.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor with parameters for configuration
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:WatchAll.Api.Models.MongoDbConfiguration.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.MongoDbConfiguration.ConnectionString">
+            <summary>
+            Connection string
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.MongoDbConfiguration.Database">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.SeasonModel">
+            <summary>
+            Model of show season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.Id">
+            <summary>
+            Unique id of season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.OrderId">
+            <summary>
+            Season order id of correspond show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.EpisodeQty">
+            <summary>
+            Number of series in the season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.PremiereDate">
+            <summary>
+            Release date
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.EndDate">
+            <summary>
+            Season end-date
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.Image">
+            <summary>
+            Image for season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.Description">
+            <summary>
+            Description of season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.EpisodesIds">
+            <summary>
+            Id of season episodes 
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.SeasonModel.ShowId">
+            <summary>
+            Id of show
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.ShowModel">
+            <summary>
+            Model of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Id">
+            <summary>
+            Unique show id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Name">
+            <summary>
+            Name of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.GenresIds">
+            <summary>
+            Ids of show genres
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Status">
+            <summary>
+            Current status of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Duration">
+            <summary>
+            Duration of show episode
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.PremiereDate">
+            <summary>
+            Date of release
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.ShowUrl">
+            <summary>
+            Url to original
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.DayOfAir">
+            <summary>
+            Day of week when episode releases
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.TimeOfAir">
+            <summary>
+            Time of day when episode releases
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Rating">
+            <summary>
+            User rating
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.ChanelId">
+            <summary>
+            Id of channel
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.ImdbId">
+            <summary>
+            Id for show on IMDB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.TheTvDbId">
+            <summary>
+            Id for show on The TvDB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.ImageOriginal">
+            <summary>
+            Big image of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.ImageMedium">
+            <summary>
+            Medium image of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Description">
+            <summary>
+            Description of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.SeasonsIds">
+            <summary>
+            Ids of show seasons
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Aliases">
+            <summary>
+            Aliases of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.ShowModel.Actors">
+            <summary>
+            Actors of show
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.UserLoginModel">
+            <summary>
+            Model for user login
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserLoginModel.Username">
+            <summary>
+            User name
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserLoginModel.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.UserModel">
+            <summary>
+            Model of use
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Models.UserModel.#ctor(WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Constructor for model of user
+            </summary>
+            <param name="profile"></param>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserModel.Id">
+            <summary>
+            User id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserModel.Name">
+            <summary>
+            Username
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserModel.Role">
+            <summary>
+            Role of user in application
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.UserProfile">
+            <summary>
+            Full user model
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Models.UserProfile.#ctor">
+            <summary>
+            Constructor for profile
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.Id">
+            <summary>
+            Unique id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.Role">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.Shows">
+            <summary>
+            Shows that user watching
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserProfile.CreatedDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Models.UserSeasonModel">
+            <summary>
+            User season model.
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserSeasonModel.SeasonId">
+            <summary>
+            Gets or sets the season identifier.
+            </summary>
+            <value>The season identifier.</value>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserSeasonModel.EpisodeIds">
+            <summary>
+            Gets or sets the episode identifiers.
+            </summary>
+            <value>The episode identifiers.</value>
+        </member>
+        <member name="T:WatchAll.Api.Models.UserStat.UserShowModel">
+            <summary>
+            User show model.
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserStat.UserShowModel.ShowId">
+            <summary>
+            Gets or sets the show identifier.
+            </summary>
+            <value>The show identifier.</value>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserStat.UserShowModel.Seasons">
+            <summary>
+            Gets or sets the seasons.
+            </summary>
+            <value>The seasons.</value>
+        </member>
+        <member name="P:WatchAll.Api.Models.UserStat.UserShowModel.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="T:WatchAll.Api.Repositories.ChannelRepository">
+            <summary>
+            Manages channels in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.ChannelRepository.#ctor(Microsoft.Extensions.Options.IOptions{WatchAll.Api.Models.MongoDbConfiguration})">
+            <summary>
+            Constructor of ChanelRepository
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.ChannelRepository.CollectionName">
+            <summary>
+            Collection name where will be stored channels
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Repositories.EpisodeRepository">
+            <summary>
+            Manages episodes in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.EpisodeRepository.#ctor(Microsoft.Extensions.Options.IOptions{WatchAll.Api.Models.MongoDbConfiguration})">
+            <summary>
+            Constructor of EpisodeRepository
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.EpisodeRepository.CollectionName">
+            <summary>
+            Collection name where will be stored episodes
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.EpisodeRepository.FindBySeasonId(System.String)">
+            <summary>
+            Get list of episodes according to correspond show
+            </summary>
+            <param name="seasonId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Repositories.GenreRepository">
+            <summary>
+            Manages genres in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.GenreRepository.#ctor(Microsoft.Extensions.Options.IOptions{WatchAll.Api.Models.MongoDbConfiguration})">
+            <summary>
+            Constructor of GenreRepository
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.GenreRepository.CollectionName">
+            <summary>
+            Collection name where will be stored genres
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Repositories.MongoRepositoryBase`1">
+            <summary>
+            Base implementation of  BaseRepository
+            </summary>
+            <typeparam name="T">Represents type that will be store in DB</typeparam>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.MongoRepositoryBase`1.CollectionName">
+            <summary>
+            Collection name where will be stored entities
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.MongoRepositoryBase`1.MongoDatabase">
+            <summary>
+            Mongo configuration
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.#ctor(Microsoft.Extensions.Options.IOptions{WatchAll.Api.Models.MongoDbConfiguration})">
+            <summary>
+            Ctor for repository
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.MongoRepositoryBase`1.Collection">
+            <summary>
+            Collection in DB
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.InsertAsync(`0)">
+            <summary>
+            Insert new entity of T in DB
+            </summary>
+            <param name="entity">The entity of T that will be inserted in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.InsertRangeAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Insert range of new entities of T in DB
+            </summary>
+            <param name="entities">The range of entities of T that will be inserted in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.ReplaceAsync(`0,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Replace existing entity of T in DB by expression
+            </summary>
+            <param name="entity">The entity of T that will be replace existing record in DB</param>
+            <param name="expression">Predicate for find entity in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.ReplaceByIdAsync(System.String,`0)">
+            <summary>
+            Replace existing entity of T in DB by expression
+            </summary>
+            <param name="id">Id of entity that will be replaced</param>
+            <param name="entity">The entity of T that will be inserted in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.DeleteAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Delete existing entity of T in DB by expression
+            </summary>
+            <param name="expression">Predicate for find entity in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.DeleteByIdAsync(System.String)">
+            <summary>
+            Delete existing entity of T in DB by expression
+            </summary>
+            <param name="id">Id of existing entity</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.FindAsync(System.String)">
+            <summary>
+            Find existing entity of T in DB by id
+            </summary>
+            <param name="key">Id of existing entity</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.SelectAllAsync">
+            <summary>
+            Find existing entity of T in DB by expression
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.FindAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Get all existing entities of T in DB
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.QueryWithFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Select entities with filter.
+            </summary>
+            <param name="filter">Filter expression.</param>
+            <returns>Collection of entities.</returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.MongoRepositoryBase`1.Query">
+            <summary>
+            Collection as queryable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Repositories.SeasonRepository">
+            <summary>
+            Manages seasons in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.SeasonRepository.#ctor(Microsoft.Extensions.Options.IOptions{WatchAll.Api.Models.MongoDbConfiguration})">
+            <summary>
+            Constructor of SeasonRepository
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.SeasonRepository.CollectionName">
+            <summary>
+            Collection name where will be stored seasons
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.SeasonRepository.FindByShowId(System.String)">
+            <summary>
+            Get list of season according to correspond show
+            </summary>
+            <param name="showId">Id of parent show</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Repositories.ShowRepository">
+            <summary>
+            Manages shows in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.ShowRepository.#ctor(Microsoft.Extensions.Options.IOptions{WatchAll.Api.Models.MongoDbConfiguration})">
+            <summary>
+            Constructor of ShowRepository
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.ShowRepository.CollectionName">
+            <summary>
+            Collection name where will be stored shows
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.ShowRepository.GetFiltered(System.String,System.Int32)">
+            <summary>
+            Returns top shows by rating
+            </summary>
+            <param name="name"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Repositories.UserRepository">
+            <summary>
+            Manages users in the database
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.UserRepository.#ctor(Microsoft.Extensions.Options.IOptions{WatchAll.Api.Models.MongoDbConfiguration})">
+            <summary>
+            Constructor of UserRepository
+            </summary>
+            <param name="settings"></param>
+        </member>
+        <member name="P:WatchAll.Api.Repositories.UserRepository.CollectionName">
+            <summary>
+            Collection name where will be stored users
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.UserRepository.FindByLogin(System.String)">
+            <summary>
+            Returns model of user by user login
+            </summary>
+            <param name="login">Login of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="M:WatchAll.Api.Repositories.UserRepository.FindByEmail(System.String)">
+            <summary>
+            Returns model of user by email
+            </summary>
+            <param name="email">Email of existing user</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Requests.RegisterUserRequest">
+            <summary>
+            Request for UserProfile
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.RegisterUserRequest.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.RegisterUserRequest.Password">
+            <summary>
+            Password
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.RegisterUserRequest.FirstName">
+            <summary>
+            FirstName
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.RegisterUserRequest.LastName">
+            <summary>
+            Last name
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.RegisterUserRequest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Requests.RegisterUserRequest.ToModel">
+            <summary>
+            Converting request to model
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest">
+            <summary>
+            Full user model response
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.Shows">
+            <summary>
+            Shows
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Requests.UserRequests.UpdateUserProfileRequest.MergeToModel(WatchAll.Api.Models.UserProfile)">
+            <summary>
+             Create model of UserProfile from request
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAll.Api.Responses.SeasonModelResponse">
+            <summary>
+            Model of show season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.Id">
+            <summary>
+            Unique id of season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.OrderId">
+            <summary>
+            Season order id of correspond show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.EpisodeQty">
+            <summary>
+            Number of series in the season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.PremiereDate">
+            <summary>
+            Release date
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.EndDate">
+            <summary>
+            Season end-date
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.Image">
+            <summary>
+            Image for season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.Description">
+            <summary>
+            Description of season
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.EpisodesIds">
+            <summary>
+            Id of season episodes 
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.SeasonModelResponse.ShowId">
+            <summary>
+            Id of show
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Responses.ShowModelFullResponse">
+            <summary>
+            Model of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Id">
+            <summary>
+            Unique show id
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Name">
+            <summary>
+            Name of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Genres">
+            <summary>
+            Ids of show genres
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Status">
+            <summary>
+            Current status of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Duration">
+            <summary>
+            Duration of show episode
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.PremiereDate">
+            <summary>
+            Date of release
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.ShowUrl">
+            <summary>
+            Url to original
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.DayOfAir">
+            <summary>
+            Day of week when episode releases
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.TimeOfAir">
+            <summary>
+            Time of day when episode releases
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Rating">
+            <summary>
+            User rating
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Chanel">
+            <summary>
+            Id of channel
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.ImdbId">
+            <summary>
+            Id for show on IMDB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.TheTvDbId">
+            <summary>
+            Id for show on The TvDB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.ImageOriginal">
+            <summary>
+            Big image of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.ImageMedium">
+            <summary>
+            Medium image of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Description">
+            <summary>
+            Description of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.SeasonsIds">
+            <summary>
+            Ids of show seasons
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Aliases">
+            <summary>
+            Aliases of show
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.ShowModelFullResponse.Actors">
+            <summary>
+            Actors of show
+            </summary>
+        </member>
+        <member name="T:WatchAll.Api.Responses.UserResponses.UserProfileRequest">
+            <summary>
+            Full user model response
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.Id">
+            <summary>
+            Id from DB
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.Login">
+            <summary>
+            Login
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.FirstName">
+            <summary>
+            Firstname
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.LastName">
+            <summary>
+            LastName
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.Role">
+            <summary>
+            Role of user
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.Shows">
+            <summary>
+            Shows
+            </summary>
+        </member>
+        <member name="P:WatchAll.Api.Responses.UserResponses.UserProfileRequest.CreatedDate">
+            <summary>
+            Date of user creation
+            </summary>
+        </member>
+        <member name="M:WatchAll.Api.Responses.UserResponses.UserProfileRequest.Create(WatchAll.Api.Models.UserProfile)">
+            <summary>
+            Create response from model
+            </summary>
+            <param name="userProfile">Model that will be transform to response</param>
+            <returns></returns>
+        </member>
+        <member name="T:WatchAllApi.Startup">
+            <summary>
+            Startup.
+            </summary>
+        </member>
+        <member name="M:WatchAllApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:WatchAllApi.Startup"/> class.
+            </summary>
+            <param name="configuration">Configuration.</param>
+            <param name="hostingEnvironment">Hosting environment.</param>
+        </member>
+        <member name="M:WatchAllApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures the services.
+            </summary>
+            <param name="services">Services.</param>
+        </member>
+        <member name="M:WatchAllApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Configure the specified app and env.
+            </summary>
+            <param name="app">App.</param>
+            <param name="env">Env.</param>
+        </member>
+    </members>
+</doc>
