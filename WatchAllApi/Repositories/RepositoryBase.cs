@@ -135,7 +135,6 @@ namespace WatchAllApi.Repositories
         /// <summary>
         /// Find existing entity of T in DB by expression
         /// </summary>
-        /// <param name="expression">Predicate for find entity in DB</param>
         /// <returns></returns>
         public async Task<List<T>> SelectAllAsync()
         {

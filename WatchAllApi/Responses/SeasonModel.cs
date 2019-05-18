@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using ApiLoader.Models;
+using WatchAllApi.Models;
 
 namespace WatchAllApi.Responses
 {

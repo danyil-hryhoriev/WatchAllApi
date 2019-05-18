@@ -155,23 +155,5 @@ namespace WatchAllApi.Controllers.v1
 
             return Ok();
         }
-
-        /// <summary>
-        /// Seed the database
-        /// </summary>
-        /// <response code="404">File with shows not found</response>
-        /// <response code="200">DataBase was seeded successfully</response>
-        /// <returns></returns>
-        [ProducesResponseType(typeof(string), 404)]
-        [ProducesResponseType(typeof(string), 200)]
-        [Route("seed")]
-        [HttpPost]
-        public async Task<IActionResult> SeedDatabase()
-        {
-            await _showManager.SeedDb();
-            return Ok();
-        }
-
-
     }
 }

@@ -12,6 +12,7 @@ namespace WatchAllApi.Interfaces.Repositories
         /// <summary>
         /// Returns top shows by rating
         /// </summary>
+        /// <param name="name">Name</param>
         /// <param name="countOfEnt">Count of top</param>
         /// <returns></returns>
         Task<List<ShowModel>> GetFiltered(string name, int countOfEnt);

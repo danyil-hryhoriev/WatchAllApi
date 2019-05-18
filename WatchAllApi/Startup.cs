@@ -21,17 +21,29 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace WatchAllApi
 {
+    /// <summary>
+    /// Startup.
+    /// </summary>
     public class Startup
     {
         private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _hostingEnvironment;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:WatchAllApi.Startup"/> class.
+        /// </summary>
+        /// <param name="configuration">Configuration.</param>
+        /// <param name="hostingEnvironment">Hosting environment.</param>
         public Startup(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
         {
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
         }
 
+        /// <summary>
+        /// Configures the services.
+        /// </summary>
+        /// <param name="services">Services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -112,7 +124,11 @@ namespace WatchAllApi
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configure the specified app and env.
+        /// </summary>
+        /// <param name="app">App.</param>
+        /// <param name="env">Env.</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())

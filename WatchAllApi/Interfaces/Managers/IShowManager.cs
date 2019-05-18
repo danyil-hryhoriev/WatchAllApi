@@ -63,11 +63,5 @@ namespace WatchAllApi.Interfaces.Managers
         /// <param name="showId">Id of show</param>
         /// <returns></returns>
         Task<ShowDtoModel> GetDtoShow(string showId);
-
-        /// <summary>
-        /// Seeds DB by Data from files
-        /// </summary>
-        /// <returns></returns>
-        Task SeedDb();
     }
 }
